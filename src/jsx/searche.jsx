@@ -29,8 +29,8 @@ export function SerchedMovies({ searched }) {
                 </span>
                 {searched.map((e) => (
                     <div key={e.Title} className="movie">
-                        <div className="movieImg">
-                            <img src={e.Poster} alt={e.Title.slice(5)} />
+                        <div className="movieImg ">
+                            <img className="rounded-xl m-1" src={e.Poster} alt={e.Title.slice(5)} />
                         </div>
                         <div>
                             <p>

@@ -4,6 +4,8 @@ import {
     MdDeleteForever1,
     FaArrowCircleDown1,
     FcRating1,
+    PiClockCounterClockwiseDuotone1,
+    RiUserStarLine1,
 } from "../icons.jsx";
 
 export function WatchedMovies({ watched }) {
@@ -24,9 +26,11 @@ export function WatchedMovies({ watched }) {
                 <div className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
                     {data.length > 0 ? (
                     <p className="text-bold flex" >
-                        #{data.length} movies , imdb Ratings{" "}
-                        {allImdbRating / data.length} <FcRating1/> User Ratings{" "}
-                        {(allUserRating / data.length).toFixed(1)}<FcRating1/>
+                        #{data.length} movies ,
+                        <span className="flex items-center">
+                            imdb Ratings{allImdbRating / data.length}<FcRating1 />
+                           User Ratings{(allUserRating / data.length).toFixed(1)}<span className=" text-xl text-yellow-500"> <RiUserStarLine1 /></span>
+                        </span> 
                     </p>
                     ) : (
                         <strong className="">you have any watched movie</strong>
@@ -81,18 +85,18 @@ function Allmovies({data,handelDelet}) {
     return (
         <>
             {data.map((e) => (
-                <div key={e.Title} className="movie justify-around">
+                <div key={e.Title} className="movie">
                     <div className="movieImg">
-                        <img src={e.Poster} alt={e.Title.slice(0, 7)} />
+                        <img className="rounded-xl m-1" src={e.Poster} alt={e.Title.slice(0, 7)} />
                     </div>
                     <div>
                         <p>
                             <strong> {e.Title}</strong>{" "}
                         </p>
                         <div className="flex m-2">
-                            {e.imdbRating && <p className="m-2 flex"> <FcRating1/> {e.imdbRating}</p>}
-                            {e.userRating && <p className="m-2 flex justify-center items-center"> <FcRating1/>{e.userRating}</p>}
-                            {e.runtime && <p className="m-2">⏳ {e.runtime} fois</p>}
+                            {e.imdbRating && <p className="m-2 flex justify-center items-center"> { e.imdbRating}  <FcRating1/></p>}
+                            {e.userRating && <p className="m-2 flex justify-center items-center">  { e.userRating} <span className=" text-xl text-yellow-500"> <RiUserStarLine1 /></span></p>}
+                            {e.runtime && <p className="m-2 flex justify-center items-center">{ e.runtime} fois <PiClockCounterClockwiseDuotone1/> </p>}
                             <p
                                 className="cursor-pointer m-2  text-red-600 text-2xl"
                                 onClick={() => {
