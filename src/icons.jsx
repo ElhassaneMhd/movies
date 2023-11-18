@@ -4,7 +4,20 @@ import { MdDeleteForever } from "react-icons/md";
 import { FaArrowCircleDown } from "react-icons/fa";
 import { SiThemoviedatabase } from "react-icons/si";
 import { FcRating } from "react-icons/fc";
+import { PiClockCounterClockwiseDuotone } from "react-icons/pi";
+import { RiUserStarLine } from "react-icons/ri";
 
+
+export function RiUserStarLine1() {
+    return (
+        <RiUserStarLine/>
+    )
+}
+export function PiClockCounterClockwiseDuotone1() {
+    return (
+        <PiClockCounterClockwiseDuotone/>
+    )
+}
 
 export function FaArrowCircleDown1() {
     return (
