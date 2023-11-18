@@ -1,0 +1,68 @@
+/* src/styles/fontawesome.css */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+:root {
+  --Secondbm: #01629c;
+  --light: #00fff9;
+  --BleuM: rgb(0, 41, 111)
+}
+
+.header {
+  margin: 10px 10px 0px 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--BleuM);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  align-items: center;
+}
+
+.header input::placeholder {
+  color: rgba(255, 255, 255, 0.534);
+}
+
+.header input, .header input:focus {
+  background-color: var(--Secondbm);
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.serched, .watched {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 400px;
+  background-color: var(--BleuM);
+  margin: 10px 5px;
+  border-radius: 10px;
+}
+
+.icon::hover {
+  scale: 1.2;
+}
+
+.icon>svg {
+  height: 4rem;
+}
+
+.movie {
+  display: flex;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.429);
+}
+
+.movieImg img {
+  width: 80px;
+  padding: 3px;
+}
