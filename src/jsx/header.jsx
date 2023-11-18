@@ -6,7 +6,7 @@ export function Header() {
 
   return (
     <div className="header">
-      <span>🍿 YOUR MOVIE APP</span>
+      <span className="h-full text-6xl hover:scale-105 " > <SiThemoviedatabase1 /></span>
       <div className="relative">
         <input
           onChange={(e) => setToSearch(e.target.value)}
@@ -21,3 +21,6 @@ export function Header() {
     </div>
   );
 }
+
+
+
