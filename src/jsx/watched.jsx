@@ -53,8 +53,8 @@ function HeaderWatched({data,allImdbRating,allUserRating}) {
                     {data.length > 0 ? (
                     <p className="flex  justify-around items-center w-full" >              
                         <span> #{data.length} movies </span>
-                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl hover:translate-x-1 hover:transition hover:duration-150"> <FcRating1 /></span></span>
-                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
+                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
+                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
                     </p>
                     ) : (
                         <strong className="">you have any watched movie</strong>
@@ -89,27 +89,23 @@ function Allmovies({data,handelDelet}) {
     return (
         <>
             {data.map((e) => (
-                <div key={e.Title} className="movie">
+                <div key={e.Title} className="movie flex m-1 rounded-xl">
                     <div className="movieImg">
-                        <img className="rounded-xl m-1" src={e.Poster} alt={e.Title.slice(0, 7)} />
+                        <img className="rounded-xl m-1 border border-white w-[100px] p-1" src={e.Poster} alt={e.Title.slice(0, 7)} />
                     </div>
-                    <div>
-                        <p>
-                            <strong> {e.Title}</strong>{" "}
-                        </p>
-                        <div className="flex m-2">
-                            {e.imdbRating && <p className="m-2 flex justify-center items-center"> { e.imdbRating}  <FcRating1/></p>}
-                            {e.userRating && <p className="m-2 flex justify-center items-center">  { e.userRating} <span className=" text-xl text-yellow-500"> <RiUserStarLine1 /></span></p>}
-                            {e.runtime && <p className="m-2 flex justify-center items-center">{ e.runtime} fois <PiClockCounterClockwiseDuotone1/> </p>}
-                            <p
-                                className="cursor-pointer m-2  text-red-600 text-2xl"
+                        <div className="flex flex-col m-2 w-max">
+                            <strong className="m-1 mx-2 text-2xl">  {e.Title}</strong>{" "}
+                            {e.imdbRating && <span className="m-1 mx-2 flex justify-start items-center"> imdb rating : <strong> { e.imdbRating}</strong>  <span className="ms-1">  <FcRating1/></span></span>}
+                            {e.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user rating :  <strong> { e.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
+                            {e.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > { e.runtime} </strong> fois <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1/></span> </span>}
+                            <span
+                                className="cursor-pointer flex items-center p-1 bg-red-500 rounded-xl w-min"
                                 onClick={() => {
                                     handelDelet(e.imdbID);
                                 }}
                             >  
-                                <MdDeleteForever1 />
-                            </p>
-                        </div>
+                                Delete <span className="ms-1  text-white text-2xl">   <MdDeleteForever1 /></span>
+                            </span>
                     </div>
                 </div>
             ))}

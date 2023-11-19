@@ -28,9 +28,9 @@ export function SerchedMovies({ searched }) {
                     <FaArrowCircleUp1 />
                 </span>
                 {searched.map((e) => (
-                    <div key={e.Title} className="movie">
+                    <div key={e.Title} className="movie flex m-1 rounded-xl">
                         <div className="movieImg ">
-                            <img className="rounded-xl m-1" src={e.Poster} alt={e.Title.slice(5)} />
+                            <img className="rounded-xl m-1 border border-white w-[80px] p-1" src={e.Poster} alt={e.Title.slice(5)} />
                         </div>
                         <div>
                             <p>
