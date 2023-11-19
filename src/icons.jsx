@@ -9,7 +9,13 @@ import { RiUserStarLine } from "react-icons/ri";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { FaRegCopyright } from "react-icons/fa";
+import { GiPopcorn } from "react-icons/gi";
 
+export function GiPopcorn1() {
+    return (
+        <GiPopcorn/>
+    )
+}
 export function FaRegCopyright1() {
     return (
         <FaRegCopyright/>

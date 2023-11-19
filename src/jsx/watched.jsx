@@ -6,6 +6,7 @@ import {
     FcRating1,
     PiClockCounterClockwiseDuotone1,
     RiUserStarLine1,
+    GiPopcorn1,
 } from "../icons.jsx";
 
 export function WatchedMovies({ watched }) {
@@ -32,14 +33,18 @@ export function WatchedMovies({ watched }) {
                 <p className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
                     you have <strong>{data?.length}</strong> watched movies
                 </p>
-                <Showbtn show={show} handelShow={handelShow}/>
+                        <Showbtn show={show} handelShow={handelShow} />
             </>
         ) : (
             <>
                 <p className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
                     you have any watched movie
                 </p>
-                <Showbtn show={show} handelShow={handelShow}/>
+                <Showbtn show={show} handelShow={handelShow} />
+                <div className="flex items-center justify-center flex-col ">
+                    <span className=" text-9xl m-5">  <GiPopcorn1 /></span>
+                    <strong className="p-2">your watch liste is empty</strong>
+                </div>
             </>
         )}
     </>
@@ -48,19 +53,17 @@ export function WatchedMovies({ watched }) {
 
 function HeaderWatched({data,allImdbRating,allUserRating}) {
     return (
-        <>
-                <div className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
-                    {data.length > 0 ? (
-                    <p className="flex  justify-around items-center w-full" >              
-                        <span> #{data.length} movies </span>
-                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
-                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
-                    </p>
-                    ) : (
-                        <strong className="">you have any watched movie</strong>
-                    )}
-                </div>
-            </>
+        <div className="p-3 pe-5 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
+            {data.length > 0 ? (
+            <p className="flex  justify-around items-center w-full" >              
+                <span> #{data.length} movies </span>
+                <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
+                <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
+            </p>
+            ) : (
+                <strong className="">you have any watched movie</strong>
+            )}
+        </div>
     )
 }
 function Showbtn({show,handelShow}) {
@@ -99,7 +102,7 @@ function Allmovies({data,handelDelet}) {
                             {e.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user rating :  <strong> { e.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
                             {e.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > { e.runtime} </strong> fois <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1/></span> </span>}
                             <span
-                                className="cursor-pointer flex items-center p-1 bg-red-500 rounded-xl w-min"
+                                className="cursor-pointer flex items-center p-1 bg-red-500 rounded-xl w-min self-center"
                                 onClick={() => {
                                     handelDelet(e.imdbID);
                                 }}

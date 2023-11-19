@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/App.css";
 
 import {
-  FaArrowCircleUp1,  FaArrowCircleDown1,BsCalendar31
+  FaArrowCircleUp1,  FaArrowCircleDown1,BsCalendar31, GiPopcorn1
 } from "../icons.jsx";
 
 export function SerchedMovies({ searched }) {
@@ -32,9 +32,9 @@ export function SerchedMovies({ searched }) {
                         <div className="movieImg ">
                             <img className="rounded-xl m-1 border border-white w-[80px] p-1" src={e.Poster} alt={e.Title.slice(5)} />
                         </div>
-                        <div>
+                        <div className="m-1">
                             <p>
-                                <strong>{e.Title}</strong>
+                                <strong className="text-2xl m-2">{e.Title}</strong>
                             </p>
                             <p className="flex items-center">{e.Year}<span className="ms-2"> <BsCalendar31/></span></p>
                         </div>
@@ -48,8 +48,11 @@ export function SerchedMovies({ searched }) {
                     onClick={handelShow}
                     >
                         <FaArrowCircleDown1 />
-                </span>
-                <strong className="p-2">you can serache a movie</strong>
+                    </span>
+                    <div className="flex items-center justify-center flex-col ">
+                        <span className=" text-9xl m-5">  <GiPopcorn1 /></span>
+                        <strong className="p-2">find your favorite movies</strong>
+                    </div>
             </>
         }
     </>
