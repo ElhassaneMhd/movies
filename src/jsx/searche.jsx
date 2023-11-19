@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/App.css";
 
 import {
-  FaArrowCircleUp1,  FaArrowCircleDown1
+  FaArrowCircleUp1,  FaArrowCircleDown1,BsCalendar31
 } from "../icons.jsx";
 
 export function SerchedMovies({ searched }) {
@@ -36,7 +36,7 @@ export function SerchedMovies({ searched }) {
                             <p>
                                 <strong>{e.Title}</strong>
                             </p>
-                            <p>{e.Year} 📅</p>
+                            <p className="flex items-center">{e.Year}<span className="ms-2"> <BsCalendar31/></span></p>
                         </div>
                     </div>
                 ))}

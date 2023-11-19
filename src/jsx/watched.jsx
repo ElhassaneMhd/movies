@@ -23,19 +23,7 @@ export function WatchedMovies({ watched }) {
     <>
         {show ? (
             <>
-                <div className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
-                    {data.length > 0 ? (
-                    <p className="text-bold flex" >
-                        #{data.length} movies ,
-                        <span className="flex items-center">
-                            imdb Ratings{allImdbRating / data.length}<FcRating1 />
-                           User Ratings{(allUserRating / data.length).toFixed(1)}<span className=" text-xl text-yellow-500"> <RiUserStarLine1 /></span>
-                        </span> 
-                    </p>
-                    ) : (
-                        <strong className="">you have any watched movie</strong>
-                    )}
-                </div>
+                <HeaderWatched data={data} allImdbRating={allImdbRating} allUserRating={allUserRating}/>
                 <Showbtn show={show} handelShow={handelShow}/>
                 <Allmovies data={data} handelDelet={handelDelet}/>
             </>
@@ -58,7 +46,23 @@ export function WatchedMovies({ watched }) {
     );
 }
 
-
+function HeaderWatched({data,allImdbRating,allUserRating}) {
+    return (
+        <>
+                <div className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
+                    {data.length > 0 ? (
+                    <p className="flex  justify-around items-center w-full" >              
+                        <span> #{data.length} movies </span>
+                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl hover:translate-x-1 hover:transition hover:duration-150"> <FcRating1 /></span></span>
+                        <span className="bg-bleuM-200 flex rounded-xl p-1 items-center"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
+                    </p>
+                    ) : (
+                        <strong className="">you have any watched movie</strong>
+                    )}
+                </div>
+            </>
+    )
+}
 function Showbtn({show,handelShow}) {
     return (
         <>

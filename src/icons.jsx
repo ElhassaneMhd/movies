@@ -6,8 +6,25 @@ import { SiThemoviedatabase } from "react-icons/si";
 import { FcRating } from "react-icons/fc";
 import { PiClockCounterClockwiseDuotone } from "react-icons/pi";
 import { RiUserStarLine } from "react-icons/ri";
+import { BsCalendar3 } from "react-icons/bs";
+import { FaGithub } from "react-icons/fa";
+import { FaRegCopyright } from "react-icons/fa";
 
-
+export function FaRegCopyright1() {
+    return (
+        <FaRegCopyright/>
+    )
+}
+export function FaGithub1() {
+    return (
+        <FaGithub/>
+    )
+}
+export function BsCalendar31() {
+    return (
+        <BsCalendar3/>
+    )
+}
 export function RiUserStarLine1() {
     return (
         <RiUserStarLine/>
