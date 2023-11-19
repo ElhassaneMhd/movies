@@ -6,7 +6,7 @@ import {
     FcRating1,
     PiClockCounterClockwiseDuotone1,
     RiUserStarLine1,
-    GiPopcorn1,
+    RiFileList3Line1,
 } from "../icons.jsx";
 
 export function WatchedMovies({ watched }) {
@@ -34,6 +34,10 @@ export function WatchedMovies({ watched }) {
                     you have <strong>{data?.length}</strong> watched movies
                 </p>
                         <Showbtn show={show} handelShow={handelShow} />
+                <div className="flex items-center justify-center flex-col ">
+                    <span className=" text-9xl m-5">  <RiFileList3Line1 /></span>
+                            <strong className="p-2">{ data.length} watched movies</strong>
+                </div>
             </>
         ) : (
             <>
@@ -42,26 +46,33 @@ export function WatchedMovies({ watched }) {
                 </p>
                 <Showbtn show={show} handelShow={handelShow} />
                 <div className="flex items-center justify-center flex-col ">
-                    <span className=" text-9xl m-5">  <GiPopcorn1 /></span>
+                    <span className=" text-9xl m-5">  <RiFileList3Line1 /></span>
                     <strong className="p-2">your watch liste is empty</strong>
                 </div>
             </>
-        )}
+            )
+        }
     </>
     );
 }
 
 function HeaderWatched({data,allImdbRating,allUserRating}) {
     return (
-        <div className="p-3 pe-5 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
+        <div className="">
             {data.length > 0 ? (
-            <p className="flex  justify-around items-center w-full" >              
+            <p className="flex  justify-around items-center w-full p-3 pe-5 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm " >              
                 <span> #{data.length} movies </span>
                 <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
                 <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
             </p>
             ) : (
-                <strong className="">you have any watched movie</strong>
+                    <>
+                <p className="w-full p-3 pe-5 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">you have any watched movie</p>
+                    <div className="flex items-center justify-center flex-col ">
+                    <span className=" text-9xl m-5">  <RiFileList3Line1 /></span>
+                    <strong className="p-2">your watch liste is empty</strong>
+                </div>
+                    </>
             )}
         </div>
     )

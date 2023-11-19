@@ -10,7 +10,13 @@ import { BsCalendar3 } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { FaRegCopyright } from "react-icons/fa";
 import { GiPopcorn } from "react-icons/gi";
+import { RiFileList3Line } from "react-icons/ri";
 
+export function RiFileList3Line1() {
+    return (
+        <RiFileList3Line/>
+    )
+}
 export function GiPopcorn1() {
     return (
         <GiPopcorn/>
