@@ -668,6 +668,10 @@ video {
   justify-content: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .justify-around {
   justify-content: space-around;
 }
@@ -876,6 +880,10 @@ video {
 
 .focus\:p-2:focus {
   padding: 0.5rem;
+}
+
+.focus\:pe-\[30px\]:focus {
+  padding-inline-end: 30px;
 }
 
 .focus\:outline-none:focus {

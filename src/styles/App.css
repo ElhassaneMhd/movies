@@ -1,36 +1,14 @@
 /* src/styles/fontawesome.css */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
 :root {
   --Secondbm: #01629c;
   --light: #00fff9;
   --BleuM: rgb(0, 41, 111)
 }
 
-.header {
-  padding: 10px;
-  border-radius: 10px;
-  background-color: var(--BleuM);
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  align-items: center;
-}
-
 .header input::placeholder {
   color: rgba(255, 255, 255, 0.534);
 }
-
-
-.icon::hover {
-  scale: 1.2;
-}
-
-.icon>svg {
-  height: 4rem;
-}
-
 .movie {
   box-shadow: 0px 0px 5px 0px black;
 }
