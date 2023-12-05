@@ -546,112 +546,8 @@ video {
   top: 0px;
 }
 
-.top-60 {
-  top: 15rem;
-}
-
-.top-10 {
-  top: 2.5rem;
-}
-
-.top-40 {
-  top: 10rem;
-}
-
-.top-3 {
-  top: 0.75rem;
-}
-
-.top-2 {
-  top: 0.5rem;
-}
-
-.top-20 {
-  top: 5rem;
-}
-
-.top-\[\] {
-  top: ;
-}
-
-.top-\[10\] {
-  top: 10;
-}
-
-.top-\[10\%\] {
-  top: 10%;
-}
-
-.top-\[50\%\] {
-  top: 50%;
-}
-
-.top-\[80\%\] {
-  top: 80%;
-}
-
-.top-\[7\%\] {
-  top: 7%;
-}
-
-.top-\[85\%\] {
-  top: 85%;
-}
-
-.top-\[765\%\] {
-  top: 765%;
-}
-
-.top-\[75\%\] {
-  top: 75%;
-}
-
-.top-\[74\%\] {
-  top: 74%;
-}
-
-.top-\[73\%\] {
-  top: 73%;
-}
-
-.top-\[\%\] {
-  top: %;
-}
-
-.top-\[65\%\] {
-  top: 65%;
-}
-
-.top-\[66\%\] {
-  top: 66%;
-}
-
-.top-\[6\%\] {
-  top: 6%;
-}
-
-.top-\[67\%\] {
-  top: 67%;
-}
-
 .top-\[70\%\] {
   top: 70%;
-}
-
-.top-\[660\%\] {
-  top: 660%;
-}
-
-.top-\[68\%\] {
-  top: 68%;
-}
-
-.z-\[10px\] {
-  z-index: 10px;
-}
-
-.z-\[100px\] {
-  z-index: 100px;
 }
 
 .m-1 {
@@ -664,10 +560,6 @@ video {
 
 .m-5 {
   margin: 1.25rem;
-}
-
-.m-auto {
-  margin: auto;
 }
 
 .mx-2 {
@@ -707,18 +599,6 @@ video {
   margin-top: 0.25rem;
 }
 
-.me-1 {
-  margin-inline-end: 0.25rem;
-}
-
-.me-2 {
-  margin-inline-end: 0.5rem;
-}
-
-.me-3 {
-  margin-inline-end: 0.75rem;
-}
-
 .flex {
   display: flex;
 }
@@ -755,6 +635,10 @@ video {
   width: 80px;
 }
 
+.w-\[90\%\] {
+  width: 90%;
+}
+
 .w-\[98\%\] {
   width: 98%;
 }
@@ -766,26 +650,6 @@ video {
 .w-max {
   width: -webkit-max-content;
   width: max-content;
-}
-
-.w-\[95px\] {
-  width: 95px;
-}
-
-.w-\[9px\] {
-  width: 9px;
-}
-
-.w-\[90px\] {
-  width: 90px;
-}
-
-.w-\[90\%\] {
-  width: 90%;
-}
-
-.w-\[\] {
-  width: ;
 }
 
 .cursor-pointer {
@@ -856,10 +720,6 @@ video {
   border-radius: 0.75rem;
 }
 
-.rounded {
-  border-radius: 0.25rem;
-}
-
 .rounded-b-xl {
   border-bottom-right-radius: 0.75rem;
   border-bottom-left-radius: 0.75rem;
@@ -870,36 +730,12 @@ video {
   border-end-start-radius: 0.75rem;
 }
 
-.rounded-s-none {
-  border-start-start-radius: 0px;
-  border-end-start-radius: 0px;
-}
-
-.rounded-e-none {
-  border-start-end-radius: 0px;
-  border-end-end-radius: 0px;
-}
-
-.rounded-e {
-  border-start-end-radius: 0.25rem;
-  border-end-end-radius: 0.25rem;
-}
-
-.rounded-t {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-}
-
 .rounded-tl-none {
   border-top-left-radius: 0px;
 }
 
 .rounded-tr-none {
   border-top-right-radius: 0px;
-}
-
-.rounded-tl {
-  border-top-left-radius: 0.25rem;
 }
 
 .border {
@@ -998,6 +834,11 @@ video {
   color: rgb(0 41 111 / var(--tw-text-opacity));
 }
 
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1047,6 +888,59 @@ video {
 
 .duration-500 {
   transition-duration: 500ms;
+}
+
+.scrollbar {
+  scrollbar-color: var(--scrollbar-thumb, initial) var(--scrollbar-track, initial);
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track);
+  border-radius: var(--scrollbar-track-radius);
+}
+
+.scrollbar::-webkit-scrollbar-track:hover {
+  background-color: var(--scrollbar-track-hover, var(--scrollbar-track));
+}
+
+.scrollbar::-webkit-scrollbar-track:active {
+  background-color: var(--scrollbar-track-active, var(--scrollbar-track-hover, var(--scrollbar-track)));
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--scrollbar-thumb-radius);
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover, var(--scrollbar-thumb));
+}
+
+.scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-active, var(--scrollbar-thumb-hover, var(--scrollbar-thumb)));
+}
+
+.scrollbar::-webkit-scrollbar-corner {
+  background-color: var(--scrollbar-corner);
+  border-radius: var(--scrollbar-corner-radius);
+}
+
+.scrollbar::-webkit-scrollbar-corner:hover {
+  background-color: var(--scrollbar-corner-hover, var(--scrollbar-corner));
+}
+
+.scrollbar::-webkit-scrollbar-corner:active {
+  background-color: var(--scrollbar-corner-active, var(--scrollbar-corner-hover, var(--scrollbar-corner)));
+}
+
+.scrollbar {
+  scrollbar-width: auto;
+}
+
+.scrollbar::-webkit-scrollbar {
+  display: block;
+  width: var(--scrollbar-width, 16px);
+  height: var(--scrollbar-height, 16px);
 }
 
 .scrollbar-thin {

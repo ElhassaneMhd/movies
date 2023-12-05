@@ -99,10 +99,10 @@ function Showbtn({show,handelShow}) {
 }
 function Allmovies({data,handelDelet}) {
     return (
-        <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thumb-Secondbm  scrollbar-thin scrollbar-thumb-rounded-full ">
+        <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thumb-Secondbm scrollbar scrollbar-thumb-rounded-full ">
             {data.map((movie) => (
-                <div key={movie.imdbID} className="movie flex m-1 rounded-xl snap-center">
-                    <div className="group w-[100px] movieImg relative">
+                <div key={movie.imdbID} className="group movie flex m-1 rounded-xl snap-center">
+                    <div className=" w-[100px] movieImg relative">
                         <img className="rounded-xl m-1 border border-white w-[90%] p-1" src={movie.Poster} alt={movie.Title.slice(0, 7)} />
                         <span
                             className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[70%] group-hover:opacity-100 transition duration-500"
