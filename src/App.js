@@ -9,10 +9,10 @@ function App() {
     <div className="flex flex-col h-full">
       <Header />
       <div className="flex flex-col  md:flex-row md:justify-center md:items-start justify-center items-center">
-        <div className="rounded-xl rounded-tr-none ms-1 mt-1 me-0 mb-1 w-[98%] md:w-[49%] p-2 flex-col flex-wrap flex text-white bg-bleuM-100">
+        <div className="rounded-xl rounded-tr-none ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col flex-wrap flex text-white bg-bleuM-100 ">
           <SerchedMovies searched={MovieData} />
         </div>
-        <div className=" rounded-xl rounded-tl-none ms-1 mt-1 me-0 mb-1 w-[98%] md:w-[49%] p-2 flex-col flex-wrap flex text-white bg-bleuM-100">
+        <div className=" rounded-xl rounded-tl-none ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col flex-wrap flex text-white bg-bleuM-100">
           <WatchedMovies watched={WatchedData} />
         </div>
       </div>

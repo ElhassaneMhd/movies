@@ -18,8 +18,8 @@ export function WatchedMovies({ watched }) {
     function handelDelet(id) {
         setData(data.filter((e) => e.imdbID !== id));
     }
-    let allImdbRating = data.reduce((acc, curr) => acc + curr.imdbRating, 0);
-    let allUserRating = data.reduce((acc, curr) => acc + curr.userRating, 0);
+    const allImdbRating = data.reduce((acc, curr) => acc + curr.imdbRating, 0);
+    const allUserRating = data.reduce((acc, curr) => acc + curr.userRating, 0);
     return (
     <>
         {show ? (
@@ -62,8 +62,8 @@ function HeaderWatched({data,allImdbRating,allUserRating}) {
             {data.length > 0 ? (
             <p className="flex  justify-around items-center w-full p-3 pe-5 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm " >              
                 <span> #{data.length} movies </span>
-                <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
-                <span className="bg-bleuM-200 flex rounded-xl p-1 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
+                <span className="bg-bleuM-200 flex rounded-xl p-2 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition">  imdb  {allImdbRating / data.length}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
+                <span className="bg-bleuM-200 flex rounded-xl p-2 items-center hover:scale-105 shadow-black hover:shadow-2xl duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-lg ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
             </p>
             ) : (
                     <>

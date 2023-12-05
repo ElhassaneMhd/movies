@@ -9,6 +9,7 @@ export function Header() {
       <span className="h-full text-6xl hover:scale-105 " > <SiThemoviedatabase1 /></span>
       <div className="relative mx-2">
         <input
+          maxLength={50}
           className="p-2 rounded-xl outline-none  border-none focus:border-none focus:outline-none focus:p-2 pe-[30px] focus:pe-[30px] font-bold text-white bg-Secondbm"
           onChange={(e) => setToSearch(e.target.value)}
           type="text"
