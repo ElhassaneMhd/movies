@@ -23,12 +23,14 @@ export function SerchedMovies({ searched }) {
     </div>  
         {show ?
             <>
+
                 <span className="absolute text-bleuM-100 m-1 cursor-pointer grid place-content-center self-end bg-white rounded-full p-1"
                 onClick={handelShow}>
                     <FaArrowCircleUp1 />
-                </span>
+                    </span>
+                <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-Secondbm scrollbar-thumb-rounded-full ">
                 {searched.map((e) => (
-                    <div key={e.Title} className="movie flex m-1 rounded-xl">
+                    <div key={e.Title} className=" snap-center movie flex m-1 rounded-xl">
                         <div className="movieImg ">
                             <img className="rounded-xl m-1 border border-white w-[80px] p-1" src={e.Poster} alt={e.Title.slice(5)} />
                         </div>
@@ -40,6 +42,7 @@ export function SerchedMovies({ searched }) {
                         </div>
                     </div>
                 ))}
+                </div>
             </>
                 :
             <>

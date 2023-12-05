@@ -1,5 +1,6 @@
 /* src/styles/fontawesome.css */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
 :root {
   --Secondbm: #01629c;
   --light: #00fff9;
@@ -9,6 +10,8 @@
 .header input::placeholder {
   color: rgba(255, 255, 255, 0.534);
 }
+
 .movie {
   box-shadow: 0px 0px 5px 0px black;
 }
+

@@ -20,6 +20,34 @@ export const MovieData = [
     Poster:
       "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
   },
+  {
+    imdbID: "jj1421543",
+    Title: "hahafghh",
+    Year: "2032",
+    Poster:
+      "jhubu",
+  },
+  {
+    imdbID: "dd154265654",
+    Title: "ahuadshc",
+    Year: "2015",
+    Poster:
+      "jdedddshubu",
+  },
+  {
+    imdbID: "qqsfd5465185",
+    Title: "efwwffw",
+    Year: "2010",
+    Poster:
+      "fwefwefwewfe",
+  },
+  {
+    imdbID: "cdwdc51546546",
+    Title: "sdaihicd",
+    Year: "2023",
+    Poster:
+      "ujvbdujvbsucdgujced",
+  },
 ];
 
 export const WatchedData = [
@@ -52,5 +80,14 @@ export const WatchedData = [
     userRating: 9,
     Poster:
       "https://m.media-amazon.com/images/M/MV5BYWZjMjk3ZTItODQ2ZC00NTY5LWE0ZDYtZTI3MjcwN2Q5NTVkXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg",
+  },
+   {
+    imdbID: "tt0137523",
+    Title: "Fight Club",
+    Year: "1999",
+    runtime: 139,
+    imdbRating: 8.8,
+    userRating: 9.2,
+    Poster: "https://m.media-amazon.com/images/M/MV5BMjQwZWFiZTUtYTZkZC00MTMyLWI0NDYtZmUxYzE2ZTA4ZmM1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg",
   },
 ];
