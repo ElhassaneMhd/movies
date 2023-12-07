@@ -46,6 +46,7 @@ function App() {
         getData={getData}
         setToSearch={setToSearch}
       />
+      <p> hello maria </p>
       <div className="flex flex-col  md:flex-row md:justify-center md:items-start justify-center items-center">
         <div className="rounded-xl rounded-tr-none ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col flex-wrap flex text-white bg-bleuM-100  ">
           <SerchedMovies toSearch={toSearch} finded={MovieData} />
