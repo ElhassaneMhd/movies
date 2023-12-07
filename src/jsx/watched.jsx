@@ -110,18 +110,17 @@ function MovieCrad({ movie, handelDelet }) {
 }
 function MovieInfos({ movie }) {
     return(
-     <div className="flex flex-col m-2 w-max">
-                <strong className="m-1 mx-2 text-2xl">  {movie.Title}</strong>{" "}
-                {movie.imdbRating && <span className="m-1 mx-2 flex justify-start items-center"> imdb rating : <strong> {movie.imdbRating}</strong>  <span className="ms-1">  <FcRating1 /></span></span>}
-                {movie.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user rating :  <strong> {movie.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
-                {movie.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > {movie.runtime} </strong> fois <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1 /></span> </span>}
-                            
-            </div >
-                )
+        <div className="flex flex-col m-2 w-max">
+            <strong className="m-1 mx-2 text-2xl">  {movie.Title}</strong>{" "}
+            {movie.imdbRating && <span className="m-1 mx-2 flex justify-start items-center"> imdb rating : <strong> { movie.imdbRating}</strong>  <span className="ms-1">  <FcRating1 /></span></span>}
+            {movie.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user rating :  <strong> {movie.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
+            {movie.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > {movie.runtime} </strong> fois <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1 /></span> </span>}              
+        </div >
+    )
 }
 function MovieImg({ movie,handelDelet}) {
     return (
-        <div className=" w-[100px] h-[150px] flex items-center movieImg relative">
+        <div className=" w-[100px] h-[150px] flex items-center relative">
             <img className="rounded-xl m-1 border border-white w-[90%] h-[90%] p-1" src={movie.Poster} alt={movie.Title.slice(0, 7)} />
             <span
                 className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[75%] group-hover:opacity-100 transition duration-500"

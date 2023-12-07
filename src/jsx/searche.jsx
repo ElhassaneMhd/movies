@@ -7,10 +7,9 @@ import {
 
 export function SerchedMovies({ finded }) {
     const [show, setShow] = useState(false);
+
     useEffect(() => {
-        if (finded.length > 0) {
-        setShow(true);
-        }
+        finded.length > 0&&  setShow(true);
     }, [finded]);
 
     function handleShow() {
@@ -20,7 +19,7 @@ export function SerchedMovies({ finded }) {
         <>
             <ShowBtn show={show} handleShow={handleShow} />
             <HeaderSearched data={finded} />
-            {show ? <AllMovies data={finded} /> : <EmptyList />}
+            {show ? <AllMovies data={finded} /> : finded.length < 0 ? <EmptyList /> : <EmptyList hidden={ true} />}
         </>
     );
 }
@@ -33,11 +32,11 @@ function ShowBtn({show,handleShow}) {
     </span>
     )    
 }
-function EmptyList() {
+function EmptyList(hidden=false) {
     return (
         <div className="flex items-center justify-center flex-col ">
             <span className=" text-9xl m-5">  <GiPopcorn1 /></span>
-            <strong className="p-2">find your favorite movies</strong>
+            <strong className="p-2">{hidden?"your searchd is hidden":"find your favorite movies"}</strong>
         </div>
     )
 }
@@ -56,22 +55,22 @@ function AllMovies({data }) {
     return (
         <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-Secondbm scrollbar-thumb-rounded-full ">
             {data.map((movie) => (
-                <MoviECard key={movie.Title} movie={movie } />
+                <MoviECard key={movie.original_title} movie={movie } />
             ))}
         </div>
     )
 }
 function MoviECard({ movie }) {
     return (
-        <div key={movie.Title} className=" snap-center movie flex m-1 rounded-xl">
-            <div className="movieImg ">
-                <img className="rounded-xl m-1 border border-white w-[80px] p-1" src={movie.Poster} alt={movie.Title.slice(5)} />
+        <div key={movie.original_title} className=" snap-center movie flex m-1 rounded-xl">
+            <div className=" w-[100px] h-[150px] flex items-center relative">
+                <img className="rounded-xl m-1 border border-white w-[90%] h-[90%] p-1" src={"https://image.tmdb.org/t/p/original"+movie.poster_path} alt={movie.original_title.slice(0,10)} />
             </div>
             <div className="m-1">
                 <p>
-                    <strong className="text-2xl m-2">{movie.Title}</strong>
+                    <strong className="text-2xl m-2">{(movie.original_title).slice(0,15)}</strong>
                 </p>
-                <p className="flex items-center">{movie.Year}<span className="ms-2"> <BsCalendar31/></span></p>
+                <p className="flex items-center">{movie.release_date}<span className="ms-2"> <BsCalendar31/></span></p>
             </div>
         </div>
     )

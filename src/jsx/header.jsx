@@ -1,16 +1,16 @@
 
 import {  MdManageSearch1,SiThemoviedatabase1} from '../icons'
 
-export function Header({toSearch,onFined, setToSearch}) {
+export function Header({toSearch,finded,getData, setToSearch}) {
   return (
-    <div className="header m-1 mb-0 p-3 rounded-xl text-white bg-bleuM-100 flex justify-between items-center font-bold">
+    <div className="header m-1 mb-0 p-3 rounded-xl text-white bg-bleuM-100 flex justify-between items-center">
       <Logo />
-      <InputToSearch findFilm={onFined} setToSearch={setToSearch}/>
-      <FindedResults toSearch={toSearch}/>
+      <InputToSearch getData={getData} setToSearch={setToSearch}/>
+      <FindedResults finded={finded} toSearch={toSearch}/>
     </div>
   );
 }
-function InputToSearch({setToSearch,findFilm}) {
+function InputToSearch({setToSearch,getData}) {
   return (
     <div className="relative mx-2">
         <input
@@ -18,7 +18,8 @@ function InputToSearch({setToSearch,findFilm}) {
           className="p-2 rounded-xl outline-none  border-none focus:border-none focus:outline-none focus:p-2 pe-[30px] focus:pe-[30px] font-bold text-white bg-Secondbm"
         onChange={(e) => {
           setToSearch(e.target.value.trim())
-          findFilm()
+          getData()
+          
         }}
           type="text"
           placeholder="Search for a movie"
@@ -34,8 +35,11 @@ function Logo() {
       <span className="h-full text-6xl hover:scale-105 " > <SiThemoviedatabase1 /></span>
   )
 }
-function FindedResults({toSearch}) {
+function FindedResults({toSearch,finded}) {
   return (
-    <span className="hidden md:inline-block">{toSearch ? `Searching for: ${toSearch}` : "No item found"}</span>
+    <div className='flex flex-col justify-end'>
+      <span className="hidden md:inline-block">{toSearch ? `Searching for: ${toSearch}` : " item found"}</span>
+      <span className="hidden md:inline-block">{finded.length>0 && `${finded.length} item finded`}</span>
+    </div>
   )
 }
