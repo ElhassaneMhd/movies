@@ -29,23 +29,19 @@ function App() {
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWVmYTExOGExNzQwMzZkZTFhYjVlODYwYjdlMzViMiIsInN1YiI6IjY1NzEyNDc4YjA0NjA1MDExZDcyMmVjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TiGZd5g4nlw3bhAOPTUNySIgFHAR29JMEXufvWewCsU",
       },
     };
-
-    toSearch.length >= 1 &&
-      fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${toSearch}&include_adult=false&language=en-US`,
-        options
-      )
-        .then((response) => response.json())
-        .then((response) => setMovieData(response.results))
-        .catch((err) => console.error(err)) &&
-      console.log(MovieData) &&
-      toSearch.length <= 1 &&
-      setToSearch("");
+    fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${toSearch}&include_adult=false&language=en-US`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => setMovieData(response.results))
+      .catch((err) => console.error(err)) && console.log(MovieData);
   }
   return (
     <div className="flex flex-col h-full">
       <Header
         toSearch={toSearch}
+        setMovieData={setMovieData}
         finded={MovieData}
         getData={getData}
         setToSearch={setToSearch}
