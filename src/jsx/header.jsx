@@ -24,9 +24,9 @@ function InputToSearch({ setMovieData, setToSearch, getData }) {
         onChange={(e) => {
           e.target.value.length >= 2
           ? setToSearch(e.target.value.trim())
-            : (setToSearch(e.target.value.trim()) )
-          e.target.value.length>=4&&getData()
-          e.target.value.length<2&& setMovieData([])
+          : (setToSearch(e.target.value.trim()) )
+          e.target.value.length >= 4&&getData()
+          e.target.value.length < 2 && setMovieData([])
         }}
           type="text"
           placeholder="Search for a movie"

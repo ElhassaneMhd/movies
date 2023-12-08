@@ -2,15 +2,15 @@ import { useEffect, useState } from "react";
 import "../styles/App.css";
 
 import {
-    FaArrowCircleUp1,  FaArrowCircleDown1,BsCalendar31, GiPopcorn1
+    FaArrowCircleUp1,  FaArrowCircleDown1,BsCalendar31, GiPopcorn1,TiStarFullOutline1
 } from "../icons.jsx";
 
-export function SerchedMovies({ finded }) {
-    const [show, setShow] = useState(false);
+export function SerchedMovies({ finded,popular }) {
+    const [show, setShow] = useState(true);
 
     useEffect(() => {
-        finded.length > 0&&  setShow(true);
-    }, [finded]);
+       ( finded.length > 0||popular.length>0) &&  setShow(true);
+    }, [finded,popular]);
 
     function handleShow() {
         show ? setShow(false) : setShow(true);
@@ -19,7 +19,11 @@ export function SerchedMovies({ finded }) {
         <>
             <ShowBtn show={show} handleShow={handleShow} />
             <HeaderSearched data={finded} />
-            {show ? <AllMovies data={finded} /> : finded.length < 0 ? <EmptyList /> : <EmptyList hidden={ true} />}
+            {(show && finded.length > 0)
+                ? <AllMovies data={finded} />
+                :(show && popular.length > 0)
+                ? <AllMovies data={popular} />
+                : <EmptyList hidden={true} />}
         </>
     );
 }
@@ -68,9 +72,13 @@ function MoviECard({ movie }) {
             </div>
             <div className="m-1">
                 <p>
-                    <strong className="text-2xl m-2">{(movie.title).slice(0,15)}</strong>
+                    <strong className="text-2xl m-2">{(movie.original_title).slice(0,15)}</strong>
                 </p>
-                <p className="flex items-center">{movie.release_date}<span className="ms-2"> <BsCalendar31/></span></p>
+                <p className="flex items-center ">{movie.release_date}<span className="ms-2"> <BsCalendar31/></span></p>
+                <p className={`flex items-center rounded-xl my-1 text-black w-min p-1 ${movie?.vote_average >= 8 ? 'bg-green-500' :movie?.vote_average >= 7 ? 'bg-green-600' :movie?.vote_average >= 6 ? 'bg-yellow-400' : movie?.vote_average >= 5 ? 'bg-orange-400' :movie?.vote_average >= 4 ? 'bg-red-400' : movie?.vote_average >= 2 ? 'bg-red-500' : 'bg-red-700'}`}> Rating
+                    <strong className=" mx-1"> {(movie?.vote_average).toFixed(2)} </strong>
+                    <span className=" text-yellow-500 "><TiStarFullOutline1 className=' shadow-2xl shadow-black' /></span>
+                </p>
             </div>
         </div>
     )

@@ -11,7 +11,13 @@ import { FaGithub } from "react-icons/fa";
 import { FaRegCopyright } from "react-icons/fa";
 import { GiPopcorn } from "react-icons/gi";
 import { RiFileList3Line } from "react-icons/ri";
+import { TiStarFullOutline } from "react-icons/ti";
 
+export function TiStarFullOutline1() {
+    return (
+        <TiStarFullOutline/>
+    )
+}
 export function RiFileList3Line1() {
     return (
         <RiFileList3Line/>
