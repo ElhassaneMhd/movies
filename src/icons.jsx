@@ -12,7 +12,38 @@ import { FaRegCopyright } from "react-icons/fa";
 import { GiPopcorn } from "react-icons/gi";
 import { RiFileList3Line } from "react-icons/ri";
 import { TiStarFullOutline } from "react-icons/ti";
+import { SiFireship } from "react-icons/si";
+import { FaSlideshare } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+import { GiExtraTime } from "react-icons/gi";
+import { IoIosPodium } from "react-icons/io";
 
+
+export function IoIosPodium1() {
+    return (
+        <IoIosPodium/>
+    )
+}
+export function GiExtraTime1() {
+    return (
+        <GiExtraTime/>
+    )
+}
+export function FaSlideshare1() {
+    return (
+        <FaSlideshare/>
+    )
+}
+export function FaUsers1() {
+    return (
+        <FaUsers/>
+    )
+}
+export function SiFireship1() {
+    return (
+        <SiFireship/>
+    )
+}
 export function TiStarFullOutline1() {
     return (
         <TiStarFullOutline/>
@@ -53,7 +84,6 @@ export function PiClockCounterClockwiseDuotone1() {
         <PiClockCounterClockwiseDuotone/>
     )
 }
-
 export function FaArrowCircleDown1() {
     return (
         <FaArrowCircleDown/>

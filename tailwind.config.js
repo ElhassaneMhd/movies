@@ -8,6 +8,8 @@ module.exports = {
         bleuM: {
           100: "rgb(0, 41, 111)",
           200: "rgba(0, 41, 111,0.5)",
+          300: "#345e9e", // Add another shade
+          400: "rgba(52, 94, 158, 0.5)",
         },
         Secondbm: "#01629c",
       },

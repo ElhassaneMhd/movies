@@ -1,48 +1,63 @@
 import "./styles/App.css";
 import { WatchedData } from "./data";
-import { popular } from "./popular";
+import {
+  getTranding,
+  getPopularMovies,
+  getTopRatedMovies,
+  getUpcoming,
+  getDataByName,
+} from "./functions.js";
 import { Header } from "./jsx/header.jsx";
 import { SerchedMovies } from "./jsx/searche.jsx";
 import { WatchedMovies } from "./jsx/watched.jsx";
 import { Footer } from "./jsx/footer.jsx";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 function App() {
   const [toSearch, setToSearch] = useState("");
-  const [MovieData, setMovieData] = useState([]);
+  const [findedByName, setFindedByName] = useState([]);
   const [popMovies, setpopMovies] = useState([]);
-  useEffect(() => setpopMovies(popular), []);
-  function getData() {
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWVmYTExOGExNzQwMzZkZTFhYjVlODYwYjdlMzViMiIsInN1YiI6IjY1NzEyNDc4YjA0NjA1MDExZDcyMmVjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TiGZd5g4nlw3bhAOPTUNySIgFHAR29JMEXufvWewCsU",
-      },
-    };
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${toSearch}&include_adult=false&language=en-US`,
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => setMovieData(response.results))
-      .catch((err) => console.error(err));
+  const [topRatedMovies, settopRatedMovies] = useState([]);
+  const [Upcoming, setUpcoming] = useState([]);
+  const [Tranding, setTranding] = useState([]);
+
+  function showPopMovies(page = 1) {
+    getPopularMovies(setpopMovies, page);
+  }
+  function showTopMovies(page = 1) {
+    getTopRatedMovies(settopRatedMovies, page);
+  }
+  function showUpcoming(page = 1) {
+    getUpcoming(setUpcoming, page);
+  }
+  function showByname(toSearch, setFindedByName) {
+    getDataByName(toSearch, setFindedByName);
+  }
+  function showTranding() {
+    getTranding(setTranding);
   }
   return (
     <div className="flex flex-col h-full">
       <Header
         toSearch={toSearch}
-        setMovieData={setMovieData}
-        finded={MovieData}
-        getData={getData}
+        setFindedByName={setFindedByName}
+        findedByName={findedByName}
+        getDataByName={getDataByName}
+        showByname={showByname}
         setToSearch={setToSearch}
       />
       <div className="flex flex-col md:flex-row md:justify-center md:items-start justify-center items-center">
         <div className="rounded-xl ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col  flex text-white bg-bleuM-100  ">
           <SerchedMovies
             toSearch={toSearch}
-            finded={MovieData}
+            findedByName={findedByName}
             popular={popMovies}
+            topRatedMovies={topRatedMovies}
+            Upcoming={Upcoming}
+            Tranding={Tranding}
+            showTopMovies={showTopMovies}
+            showPopMovies={showPopMovies}
+            showUpcoming={showUpcoming}
+            showTranding={showTranding}
           />
         </div>
         <div className=" rounded-xl ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col flex text-white bg-bleuM-100">
@@ -56,16 +71,18 @@ function App() {
 
 export default App;
 
+// const [finded, setFinded] = useState([]);
+// function findFilm() {
+//   findedByName.map(
+//     (movie) =>
+//       toSearch.length >= 1 &&
+//       !finded.find(e=>e.id===movie.id)&&
+//       movie.original_title.toLowerCase().includes(toSearch.toLowerCase()) &&
+//       setFinded([...finded, movie])
+//   );
+//   toSearch.length < 2 && setFinded([]);
+//u
 
- // const [finded, setFinded] = useState([]);
-  // function findFilm() {
-  //   MovieData.map(
-  //     (movie) =>
-  //       toSearch.length >= 1 &&
-  //       !finded.find(e=>e.id===movie.id)&&
-  //       movie.original_title.toLowerCase().includes(toSearch.toLowerCase()) &&
-  //       setFinded([...finded, movie])
-  //   );
-  //   toSearch.length < 2 && setFinded([]);
-  //u
-  
+// useEffect(() => {
+//   getPopularMovies(setpopMovies);
+// }, []);
