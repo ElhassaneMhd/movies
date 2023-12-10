@@ -42,7 +42,7 @@ function HeaderWatched({data,allImdbRating,allUserRating,show,handelShow}) {
             {data.length > 0 ? (
                 <>
                     <Showbtn show={show} handelShow={handelShow} />
-                    <p className="flex  justify-around items-center w-full p-1 pe-5 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm " >              
+                    <p className="flex  justify-around items-center w-full p-1 pe-5 mb-2 shadow-md shadow-black rounded-md bg-Secondbm " >              
                     <span> #{data.length} movies </span>
                     <span className="bg-bleuM-200 flex rounded-xl py-1 px-2 items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition">  imdb  {(allImdbRating / data.length).toFixed(1)}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
                     <span className="bg-bleuM-200 flex rounded-xl px-2 py-1 items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-md ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>

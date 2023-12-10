@@ -3,7 +3,7 @@ import {  MdManageSearch1,SiThemoviedatabase1} from '../icons'
 
 export function Header({toSearch,findedByName,setFindedByName, setToSearch,showByname}) {
   return (
-    <div className="header m-1 mb-0 p-3 rounded-xl text-white bg-bleuM-100 flex justify-between items-center">
+    <div className="header m-1 mb-0 p-3 rounded-md text-white bg-bleuM-100 flex justify-between items-center">
       <Logo />
       <InputToSearch toSearch={toSearch } setFindedByName={setFindedByName} showByname={showByname} setToSearch={setToSearch}/>
       <FindedResults findedByName={findedByName} toSearch={toSearch}/>
@@ -16,7 +16,7 @@ function InputToSearch({ setFindedByName,toSearch, setToSearch ,showByname}) {
     showByname(toSearch,setFindedByName)
   }
   return (
-    <form onSubmit={(e)=>handlSumit(e)} className="group relative mx-2 w-[70%]">
+    <form onSubmit={(e)=>handlSumit(e)} className=" relative mx-2 w-[70%]">
       <input
         autoFocus={true}
           maxLength={50}

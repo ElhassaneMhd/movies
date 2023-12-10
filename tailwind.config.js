@@ -13,6 +13,9 @@ module.exports = {
         },
         Secondbm: "#01629c",
       },
+      screens: {
+        mobile: { min: "250px", max: "640" },
+      },
     },
   },
   plugins: [require("tailwind-scrollbar")({ nocompatible: true })],

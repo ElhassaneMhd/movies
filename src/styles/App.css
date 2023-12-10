@@ -15,6 +15,22 @@
   box-shadow: 0px 0px 5px 0px black;
 }
 
-.TextResponsive {
-  @apply text-base lg:text-xl xl:text-xl
+@media screen and (max-width: 820px) {
+  .tabsText {
+    width: 0;
+    opacity: 0;
+  }
 }
+
+@media screen and (max-width: 820px) {
+  .Tabsbutton:hover .tabsText , .activTab{
+    width: 100%;
+    opacity: 1;
+  }
+
+  .Tabsbutton:hover {
+    transition: 1s;
+  }
+}
+
+
