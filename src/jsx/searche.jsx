@@ -66,51 +66,51 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
         <div className="flex mt-1 gap-1 justify-center items-center top-full m-auto" >
             {page > 1 &&
             <input type="button" className=" hover:bg-red-700 cursor-pointer bg-bleuM-200 rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
-                setPage(+e.target.value)
-                readMore(showedData, page);
-            }} value={page-1} />
-        }
-            <input type="button" className="hover:bg-red-700 border-2 m-1 border-zinc-50  cursor-pointe rounded-xl px-2 py-1 font-bold shadow-black shadow-sm scale-110" value={page} />
+                    setPage(+e.target.value)
+                    readMore(showedData, e.target.value);
+                }} value={page-1} />
+                }
+            <input type="button" className=" border-2 m-1 border-zinc-50 rounded-xl px-2 py-1 font-bold shadow-black shadow-sm scale-110" value={page} />
             <input type="button" className=" hover:bg-red-700 cursor-pointer bg-bleuM-200 flex rounded-xl px-2 py-1 font-bold items-center hover:scale-105 shadow-black shadow-sm duration-500 " onClick={(e) => {
-                try{ setPage(+e.target.value)}
-                finally{readMore(showedData, page)}
-            }} value={page+1}/>
+                    setPage(+e.target.value)
+                    readMore(showedData, e.target.value)
+                }} value={page+1}/>
         </div>
     )
 }
 function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding}) {
     return (
         <div className="flex gap-1 justify-center items-center w-full p-1 mb-1 shadow-md shadow-black rounded-md bg-Secondbm " >
-            <button className="group Tabsbutton p-1 px-2  bg-bleuM-200 hover:bg-white hover:text-bleuM-200 flex rounded-xl items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition" onClick={() => {
+            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'topMovies'?'bg-bleuM-200 scale-105':'bg-bleuM-200 opacity-50'}`} onClick={() => {
                 showTopMovies()
                 setshowedData('topMovies');
                 setPage(1)
                 }}>
-                <span className={`tabsText ${showedData === 'topMovies'?'activTab':''}`  }>Top</span>
+                <span className={`  sm:opacity-100 sm:w-full ${showedData === 'topMovies'?'w-full opacity-100':'opacity-0 w-0'}`   }>Top</span>
                 <span className="mx-1 flex"><IoIosPodium1 /></span>
             </button>
-            <button className=" Tabsbutton p-1 px-2  bg-bleuM-200 hover:bg-white hover:text-bleuM-200 rounded-xl flex items-center hover:scale-105 shadow-sm transition duration-500 shadow-black" onClick={() => {
+            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'popMovies'?'bg-bleuM-200 scale-105':' bg-bleuM-200 opacity-50'}`} onClick={() => {
                 showPopMovies()
                 setshowedData('popMovies')
                 setPage(1)
                 }}>
-                <span  className={`tabsText ${showedData === 'popMovies'?'activTab':''}`  }>Popular</span>
+                <span  className={`sm:opacity-100 sm:w-full ${showedData === 'popMovies'?'w-full opacity-100':'opacity-0 w-0'}`} >Popular</span>
                 <span className="mx-1 "><FaSlideshare1 /></span>
             </button>
-            <button className="Tabsbutton p-1 px-2 bg-bleuM-200 hover:bg-white hover:text-bleuM-200 hover:text-black rounded-xl flex items-center hover:scale-105 shadow-sm transition duration-500 shadow-black" onClick={() => {
+            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'upcoming'?'bg-bleuM-200 scale-105':'bg-bleuM-200 opacity-50'}`}  onClick={() => {
                 showUpcoming() 
                 setshowedData('upcoming')
                 setPage(1)
             }}>
-                <span  className={`tabsText ${showedData === 'upcoming'?'activTab':''}`  }>Recents</span>
+                <span  className={`  sm:opacity-100 sm:w-full ${showedData === 'upcoming'?'w-full opacity-100':'opacity-0 w-0'}`} >Recents</span>
                 <span className="mx-1 text-xl"><GiExtraTime1 /></span>
             </button>
-            <button className="Tabsbutton p-1 px-2  bg-bleuM-200 hover:bg-white hover:text-bleuM-200 hover:text-black rounded-xl flex items-center hover:scale-105 shadow-sm transition duration-500 shadow-black" onClick={() => {
+            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'tranding'?'bg-bleuM-200 scale-105':' bg-bleuM-200 opacity-50'}`}  onClick={() => {
                 showTranding() 
                 setshowedData('tranding')
                 setPage(1)
             }}>
-                <span  className={`tabsText ${showedData === 'tranding'?'activTab':''}`  }>Tranding</span>
+                <span  className={`  sm:opacity-100 sm:w-full ${showedData === 'tranding'?'w-full opacity-100':'opacity-0 w-0'}`} >Tranding</span>
                 <span className="mx-1 text-xl"><SiFireship1 /></span>
             </button>
         </div>
@@ -120,7 +120,7 @@ function EmptyList(hidden) {
     return (
         <div className="flex items-center justify-center flex-col h-full">
             <span className=" text-9xl m-5">  <GiPopcorn1 /></span>
-            <strong className="p-2">{hidden?"Any movies ":"hidden section"}</strong>
+            <strong className="p-2">{hidden?"no movies found ":"hidden section"}</strong>
         </div>
     )
 }

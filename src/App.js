@@ -11,7 +11,7 @@ import { Header } from "./jsx/header.jsx";
 import { SerchedMovies } from "./jsx/searche.jsx";
 import { WatchedMovies } from "./jsx/watched.jsx";
 import { Footer } from "./jsx/footer.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function App() {
   const [toSearch, setToSearch] = useState("");
   const [findedByName, setFindedByName] = useState([]);
@@ -19,7 +19,10 @@ function App() {
   const [topRatedMovies, settopRatedMovies] = useState([]);
   const [Upcoming, setUpcoming] = useState([]);
   const [Tranding, setTranding] = useState([]);
-
+  
+  useEffect(() => {
+  showTopMovies();
+})
   function showPopMovies(page = 1) {
     getPopularMovies(setpopMovies, page);
   }

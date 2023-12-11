@@ -1,6 +1,8 @@
 /* src/styles/fontawesome.css */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
+
+
 :root {
   --Secondbm: #01629c;
   --light: #00fff9;
@@ -15,22 +17,15 @@
   box-shadow: 0px 0px 5px 0px black;
 }
 
-@media screen and (max-width: 820px) {
-  .tabsText {
-    width: 0;
-    opacity: 0;
-  }
+.activTab {
+  width: 100%;
+  opacity: 1;
 }
 
-@media screen and (max-width: 820px) {
-  .Tabsbutton:hover .tabsText , .activTab{
-    width: 100%;
-    opacity: 1;
-  }
-
-  .Tabsbutton:hover {
-    transition: 1s;
-  }
+.Tabsbutton:hover {
+  transition: 1s;
 }
 
-
+.tabsButton {
+  @apply hover:opacity-100 p-1 px-2 flex rounded-xl items-center hover:scale-105 duration-500 hover:transition
+}
