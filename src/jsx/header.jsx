@@ -38,7 +38,7 @@ function InputToSearch({ setFindedByName,toSearch, setToSearch ,showByname}) {
 }
 function Logo() {
   return (
-      <span className="h-full text-6xl hover:scale-105 " > <SiThemoviedatabase1 /></span>
+      <span className="h-full text-6xl hover:scale-105  cursor-pointer" onClick={()=>(window.location.reload())} > <SiThemoviedatabase1 /></span>
   )
 }
 function FindedResults({toSearch,findedByName}) {

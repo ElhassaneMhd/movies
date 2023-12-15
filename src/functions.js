@@ -1,4 +1,4 @@
-export const getPopularMovies = async (setpopMovies,page=1) => {
+export const getPopularMovies = async (setpopMovies, page = 1) => {
   const options = {
     method: "GET",
     headers: {
@@ -15,7 +15,7 @@ export const getPopularMovies = async (setpopMovies,page=1) => {
     .then((response) => setpopMovies(response.results))
     .catch((err) => console.error(err));
 };
-export const getTopRatedMovies = async (setpopMovies,page=1) => {
+export const getTopRatedMovies = async (setpopMovies, page = 1) => {
   const options = {
     method: "GET",
     headers: {
@@ -49,8 +49,8 @@ export const getDataByName = async (toSearch, setToSearch) => {
     .then((response) => response.json())
     .then((response) => setToSearch(response.results))
     .catch((err) => console.error(err));
-}
-export const getUpcoming = async (setUpcoming,page) => {
+};
+export const getUpcoming = async (setUpcoming, page) => {
   const options = {
     method: "GET",
     headers: {
@@ -60,7 +60,7 @@ export const getUpcoming = async (setUpcoming,page) => {
     },
   };
   await fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=${page}`,
+    `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1`,
     options
   )
     .then((response) => response.json())

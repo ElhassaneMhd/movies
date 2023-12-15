@@ -20,16 +20,16 @@ function App() {
   const [Upcoming, setUpcoming] = useState([]);
   const [Tranding, setTranding] = useState([]);
   
-  useEffect(() => {
+useEffect(() => {
   showTopMovies();
-})
-  function showPopMovies(page = 1) {
+},[])
+  function showPopMovies(page) {
     getPopularMovies(setpopMovies, page);
   }
-  function showTopMovies(page = 1) {
+  function showTopMovies(page ) {
     getTopRatedMovies(settopRatedMovies, page);
   }
-  function showUpcoming(page = 1) {
+  function showUpcoming(page) {
     getUpcoming(setUpcoming, page);
   }
   function showByname(toSearch, setFindedByName) {

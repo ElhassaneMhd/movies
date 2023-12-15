@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import "../styles/App.css";
-import { BsCalendar31,TiStarFullOutline1,SiFireship1,FaSlideshare1,GiPopcorn1,FaUsers1,GiExtraTime1,IoIosPodium1, } from "../icons.jsx";
+import { BsCalendar31,TiStarFullOutline1,SiFireship1,FaSlideshare1,GiPopcorn1,FaUsers1,GiExtraTime1,IoIosPodium1, FaArrowUpRightFromSquare1,} from "../icons.jsx";
 
 export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,showTopMovies,showPopMovies,showUpcoming ,showTranding,Tranding}) {
     const [showedData, setshowedData] = useState('topMovies');
@@ -11,19 +11,20 @@ export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,sho
     return (
         <>
             <Tabs setPage={setPage} showTopMovies={showTopMovies} showTranding={showTranding} showedData={showedData} showUpcoming={showUpcoming} showPopMovies={showPopMovies} setshowedData={setshowedData} />
-                {showedData==='topMovies' && <AllMovies data={topRatedMovies} />}
-                {showedData==='popMovies' && <AllMovies data={popular} />}
-                {showedData==='searched' && <AllMovies data={findedByName} />}
-                {showedData==='upcoming' && <AllMovies data={Upcoming} />}
-                {showedData==='tranding' && <AllMovies data={Tranding} />}
-            <Pagination page={page} setPage={setPage} showedData={showedData} showTranding={showTranding} showTopMovies={showTopMovies} showUpcoming={showUpcoming} showPopMovies={showPopMovies} />
+            {showedData==='topMovies' && <AllMovies data={topRatedMovies} />}
+            {showedData==='popMovies' && <AllMovies data={popular} />}
+            {showedData==='searched' && <AllMovies data={findedByName} />}
+            {showedData==='upcoming' && <AllMovies data={Upcoming} />}
+            {showedData === 'tranding' && <AllMovies data={Tranding} />}
+            {!['tranding', 'searched'].includes(showedData)
+            &&<Pagination page={page} setPage={setPage} showedData={showedData} showTranding={showTranding} showTopMovies={showTopMovies} showUpcoming={showUpcoming} showPopMovies={showPopMovies} />}
         </>
     );
 }
 function AllMovies({ data }) {    
     return (
         <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-Secondbm scrollbar-thumb-rounded-full ">
-            {data.length > 0
+            {data?.length > 0
                 ?data.map((movie) => <MoviECard key={movie.id} movie={movie} />)
                 : <EmptyList hidden={false} />
             }
@@ -32,11 +33,11 @@ function AllMovies({ data }) {
 }
 function MoviECard({ movie }) {
     return (
-        <div key={movie.id} className="snap-center movie flex m-1 rounded-md">
+        <div key={movie.id} className="group snap-center movie flex m-1 rounded-md">
             <div className=" w-[100px] h-[150px] flex items-center relative">
                 <img className="rounded-xl m-1 border border-white w-[90%] h-[90%] p-1" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.png'} alt={movie.original_title.slice(0,10)} />
             </div>
-            <div className="m-1 shrink">
+            <div className="m-1 shrink relative">
                 <p>
                     <strong className="TextResponsive ">{(movie.original_title).slice(0,25)}</strong>
                 </p>
@@ -50,7 +51,11 @@ function MoviECard({ movie }) {
                         <span className=" text-indigo-950 drop-shadow-xl"><FaUsers1 /></span>
                     </p>
                 </div>
-                <p className=" text-sm flex items-center ">{movie.release_date}<span className="ms-2"> <BsCalendar31 /></span></p>
+                <p className="group text-sm flex items-center ">{movie.release_date}<span className="ms-2"> <BsCalendar31 /></span></p>
+                <p className={'hidden  group-hover:flex absolute top-[40%] items-center justify-center gap-1 rounded-md my-1 py-2 cursor-pointer w-full bg-Secondbm opacity-75 hover:opacity-100 hover:scale-105'}>
+                        <span className=" mx-1 text-xs font-medium"> show details </span>
+                        <span className=" text-indigo-950 text-xs drop-shadow-xl"><FaArrowUpRightFromSquare1 /></span>
+                    </p>
             </div>
         </div>
     )
@@ -67,20 +72,21 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
             {page > 1 &&
             <input type="button" className=" hover:bg-red-700 cursor-pointer bg-bleuM-200 rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
                     setPage(+e.target.value)
-                    readMore(showedData, e.target.value);
+                    readMore(showedData, +e.target.value);
                 }} value={page-1} />
                 }
             <input type="button" className=" border-2 m-1 border-zinc-50 rounded-xl px-2 py-1 font-bold shadow-black shadow-sm scale-110" value={page} />
             <input type="button" className=" hover:bg-red-700 cursor-pointer bg-bleuM-200 flex rounded-xl px-2 py-1 font-bold items-center hover:scale-105 shadow-black shadow-sm duration-500 " onClick={(e) => {
                     setPage(+e.target.value)
-                    readMore(showedData, e.target.value)
+                    readMore(showedData, +e.target.value)
                 }} value={page+1}/>
         </div>
     )
 }
 function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding}) {
     return (
-        <div className="flex gap-1 justify-center items-center w-full p-1 mb-1 shadow-md shadow-black rounded-md bg-Secondbm " >
+        <div id={'tabs'} className="flex gap-2 overflow-auto  justify-center items-center w-full p-1 mb-1 shadow-md shadow-black rounded-md bg-Secondbm " >
+            <span> </span>
             <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'topMovies'?'bg-bleuM-200 scale-105':'bg-bleuM-200 opacity-50'}`} onClick={() => {
                 showTopMovies()
                 setshowedData('topMovies');

@@ -17,8 +17,14 @@ import { FaSlideshare } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { GiExtraTime } from "react-icons/gi";
 import { IoIosPodium } from "react-icons/io";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 
+export function FaArrowUpRightFromSquare1() {
+    return (
+        <FaArrowUpRightFromSquare/>
+    )
+}
 export function IoIosPodium1() {
     return (
         <IoIosPodium/>

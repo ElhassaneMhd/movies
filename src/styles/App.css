@@ -13,18 +13,13 @@
   color: rgba(255, 255, 255, 0.534);
 }
 
-.movie {
-  box-shadow: 0px 0px 5px 0px black;
-}
-
-.activTab {
-  width: 100%;
-  opacity: 1;
-}
-
 .Tabsbutton:hover {
   transition: 1s;
 }
+
+/* #tabs::-webkit-scrollbar {
+  display: none;
+} */
 
 .tabsButton {
   @apply hover:opacity-100 p-1 px-2 flex rounded-xl items-center hover:scale-105 duration-500 hover:transition
