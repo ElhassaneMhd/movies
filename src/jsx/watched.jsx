@@ -9,48 +9,46 @@ import {
     RiFileList3Line1,
 } from "../icons.jsx";
 
-export function WatchedMovies({ watched }) {
-    const [data, setData] = useState(watched);
+export function WatchedMovies({ watchedListe ,setToWatchedListe}) {
     const [show, setshow] = useState(true);
     function handelShow() {
         show ? setshow(false) : setshow(true);
     }
     function handelDelet(id) {
-        setData(data.filter((e) => e.imdbID !== id));
+        setToWatchedListe(watchedListe.filter((e) => e.id !== id));
     }
-    const allImdbRating = data.reduce((acc, curr) => acc + curr.imdbRating, 0);
-    const allUserRating = data.reduce((acc, curr) => acc + curr.userRating, 0);
+    const allImdbRating = watchedListe.reduce((acc, curr) => acc + curr.vote_average, 0);
+    const allUserRating = watchedListe.reduce((acc, curr) => curr.userRating? acc + curr.userRating:0, 0);
     return (
     <>
-        {(show && data.length > 0)? (
+        {(show && watchedListe.length > 0)? (
             <>
-                <HeaderWatched show={show }  handelShow={handelShow} data={data} allImdbRating={allImdbRating} allUserRating={allUserRating}/>
-                <Allmovies data={data} handelDelet={handelDelet}/>
+                <HeaderWatched show={show }  handelShow={handelShow} watchedListe={watchedListe} allImdbRating={allImdbRating} allUserRating={allUserRating}/>
+                <Allmovies watchedListe={watchedListe} handelDelet={handelDelet}/>
             </>
-        ) : data.length > 0 ? (
-                <EmptyListe data={data} hidden={true} show={show} handelShow={handelShow}/>             
+        ) : watchedListe.length > 0 ? (
+                <EmptyListe watchedListe={watchedListe} hidden={true} show={show} handelShow={handelShow}/>             
         ) : (
-                <EmptyListe data={data}  hidden={false} show={show} handelShow={handelShow}/>
+                <EmptyListe watchedListe={watchedListe}  hidden={false} show={show} handelShow={handelShow}/>
             )
         }
     </>
     );
 }
-function HeaderWatched({data,allImdbRating,allUserRating,show,handelShow}) {
+function HeaderWatched({watchedListe,allImdbRating,allUserRating,show,handelShow}) {
     return (
         <>
-            {data.length > 0 ? (
+            {watchedListe.length > 0 ? (
                 <>
                     <Showbtn show={show} handelShow={handelShow} />
                     <p className="flex  justify-around items-center w-full p-1 pe-5 mb-2 shadow-md shadow-black rounded-md bg-Secondbm " >              
-                    <span> #{data.length} movies </span>
-                    <span className="bg-bleuM-200 flex rounded-xl py-1 px-2 items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition">  imdb  {(allImdbRating / data.length).toFixed(1)}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
-                    <span className="bg-bleuM-200 flex rounded-xl px-2 py-1 items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition"> User  {(allUserRating / data.length).toFixed(1)}<span className=" text-md ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
+                    <span> #{watchedListe.length} movies </span>
+                    <span className="bg-bleuM-200 flex rounded-xl py-1 px-2 items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition">  imdb  {(allImdbRating / watchedListe.length).toFixed(1)}<span className="ms-2 text-2xl"> <FcRating1 /></span></span>
+                    <span className="bg-bleuM-200 flex rounded-xl px-2 py-1 items-center hover:scale-105 shadow-black shadow-sm duration-500 hover:transition"> User  {(allUserRating / watchedListe.length).toFixed(1)}<span className=" text-md ms-1 text-yellow-400 p-1 bg-red-500 rounded-2xl"> <RiUserStarLine1 /></span></span>
                     </p>
                 </>
             ) : (
-                <EmptyListe data={data}  show={show } handelShow={handelShow}/>             
-            
+                <EmptyListe watchedListe={watchedListe}  show={show } handelShow={handelShow}/>             
             )}
 
         </>
@@ -77,21 +75,21 @@ function Showbtn({show,handelShow}) {
         </>
     )
 }
-function Allmovies({data,handelDelet}) {
+function Allmovies({watchedListe,handelDelet}) {
     return (
         <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thumb-Secondbm  scrollbar-thin scrollbar-thumb-rounded-full ">
-            {data.map((movie) => (
-                <MovieCrad key={movie.imdbID} movie={movie} handelDelet={handelDelet } />
+            {watchedListe.map((movie) => (
+                <MovieCrad key={movie.id} movie={movie} handelDelet={handelDelet } />
             ))}
         </div>
     )
 }
-function EmptyListe({show ,data, handelShow,hidden}) {
+function EmptyListe({show ,watchedListe, handelShow,hidden}) {
     return (
         <>
             <Showbtn show={show} handelShow={handelShow} />
             <p className="p-3 mb-2 shadow-md shadow-black rounded-s-xl rounded-b-xl bg-Secondbm ">
-                {data.length>0? `you have  ${data?.length} watched movies` :"you have any watched movie"  }
+                {watchedListe.length>0? `you have  ${watchedListe?.length} watched movies` :"you have any watched movie"  }
             </p>
             <div className="flex items-center justify-center flex-col">
                 <span className=" text-9xl m-5">  <RiFileList3Line1 /></span>
@@ -102,7 +100,7 @@ function EmptyListe({show ,data, handelShow,hidden}) {
 }
 function MovieCrad({ movie, handelDelet }) {
     return (
-        <div key={movie.imdbID} className="group movie flex m-1 rounded-xl snap-center">
+        <div key={movie.id} className="group movie flex m-1 rounded-xl snap-center">
             <MovieImg handelDelet={handelDelet} movie={movie}/>
             <MovieInfos movie={movie}/>            
         </div>
@@ -111,9 +109,9 @@ function MovieCrad({ movie, handelDelet }) {
 function MovieInfos({ movie }) {
     return(
         <div className="flex flex-col m-2 w-max">
-            <strong className="m-1 mx-2 text-2xl">  {movie.Title}</strong>{" "}
-            {movie.imdbRating && <span className="m-1 mx-2 flex justify-start items-center"> imdb rating : <strong> { movie.imdbRating}</strong>  <span className="ms-1">  <FcRating1 /></span></span>}
-            {movie.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user rating :  <strong> {movie.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
+            <strong className="m-1 mx-2 text-2xl">  {movie.original_title}</strong>{" "}
+            {movie.vote_average && <span className="m-1 mx-2 flex justify-start items-center"> imdb : <strong> { movie.vote_average.toFixed(2)}</strong>  <span className="ms-1">  <FcRating1 /></span></span>}
+            {movie?.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user  :  <strong> {movie.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
             {movie.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > {movie.runtime} </strong> fois <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1 /></span> </span>}              
         </div >
     )
@@ -121,10 +119,10 @@ function MovieInfos({ movie }) {
 function MovieImg({ movie,handelDelet}) {
     return (
         <div className=" w-[100px] h-[150px] flex items-center relative">
-            <img className="rounded-xl m-1 border border-white w-[90%] h-[90%] p-1" src={movie.Poster} alt={movie.Title.slice(0, 7)} />
+                <img className="absolute  rounded-xl m-1 border border-white w-[90%] h-[90%] " src={movie.poster_path?"https://image.tmdb.org/t/p/w300"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)} />
             <span
-                className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[75%] group-hover:opacity-100 transition duration-500"
-                onClick={() => handelDelet(movie.imdbID)}
+                className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[78%] group-hover:opacity-100 transition duration-500"
+                onClick={() => handelDelet(movie.id)}
                 >
                 <strong> Delete</strong>
                 <span className="ms-1  text-white text-2xl">   <MdDeleteForever1 /></span>

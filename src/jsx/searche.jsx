@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react";
 import "../styles/App.css";
-import { BsCalendar31,TiStarFullOutline1,SiFireship1,FaSlideshare1,GiPopcorn1,FaUsers1,GiExtraTime1,IoIosPodium1, FaArrowUpRightFromSquare1,} from "../icons.jsx";
+import { TiStarFullOutline1,SiFireship1,FaSlideshare1,GiPopcorn1,FaUsers1,GiExtraTime1,IoIosPodium1, FaArrowUpRightFromSquare1,} from "../icons.jsx";
 
-export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,showTopMovies,showPopMovies,showUpcoming ,showTranding,Tranding}) {
+export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,showTopMovies,showPopMovies,showUpcoming ,showTranding,Tranding,showDetailedMovie,onLoad,errOnLoad}) {
     const [showedData, setshowedData] = useState('topMovies');
     const[page ,setPage]=useState(1)
     useEffect(() => {
@@ -10,36 +10,38 @@ export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,sho
     }, [findedByName]);
     return (
         <>
-            <Tabs setPage={setPage} showTopMovies={showTopMovies} showTranding={showTranding} showedData={showedData} showUpcoming={showUpcoming} showPopMovies={showPopMovies} setshowedData={setshowedData} />
-            {showedData==='topMovies' && <AllMovies data={topRatedMovies} />}
-            {showedData==='popMovies' && <AllMovies data={popular} />}
-            {showedData==='searched' && <AllMovies data={findedByName} />}
-            {showedData==='upcoming' && <AllMovies data={Upcoming} />}
-            {showedData === 'tranding' && <AllMovies data={Tranding} />}
-            {!['tranding', 'searched'].includes(showedData)
+            <Tabs setPage={setPage} showTopMovies={showTopMovies} showTranding={showTranding} showedData={showedData} showUpcoming={showUpcoming}
+                showPopMovies={showPopMovies} setshowedData={setshowedData} Tranding={Tranding} Upcoming={Upcoming} topRatedMovies={topRatedMovies} popular={popular}
+            />
+            {onLoad && !errOnLoad && <Loader />}
+            {errOnLoad &&<p>connexion failed</p>}
+            {showedData==='topMovies'&&!onLoad && <AllMovies data={topRatedMovies} showDetailedMovie={showDetailedMovie} />}
+            {showedData==='popMovies'&&!onLoad && <AllMovies data={popular} showDetailedMovie={showDetailedMovie}/>}
+            {showedData==='searched'&& !onLoad && <AllMovies data={findedByName} showDetailedMovie={showDetailedMovie}/>}
+            {showedData==='upcoming'&& !onLoad && <AllMovies data={Upcoming} showDetailedMovie={showDetailedMovie}/>}
+            {showedData==='tranding'&& !onLoad && <AllMovies data={Tranding} showDetailedMovie={showDetailedMovie} />}
+            {!['tranding', 'searched'].includes(showedData)&&!errOnLoad&&!onLoad
             &&<Pagination page={page} setPage={setPage} showedData={showedData} showTranding={showTranding} showTopMovies={showTopMovies} showUpcoming={showUpcoming} showPopMovies={showPopMovies} />}
         </>
     );
 }
-function AllMovies({ data }) {    
+function AllMovies({ data,setdetailedID,showDetailedMovie }) {    
     return (
-        <div className="snap-y h-[70vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-Secondbm scrollbar-thumb-rounded-full ">
+        <div className=" flex flex-wrap justify-around h-[70vh] overflow-auto snap-y scrollbar-thin scrollbar-thumb-Secondbm scrollbar-thumb-rounded-full w-full ">
             {data?.length > 0
-                ?data.map((movie) => <MoviECard key={movie.id} movie={movie} />)
+                ?data.map((movie) => <MoviECard key={movie.id} showDetailedMovie={showDetailedMovie} setdetailedID={setdetailedID} movie={movie} />)
                 : <EmptyList hidden={false} />
             }
         </div>
     )
 }
-function MoviECard({ movie }) {
+function MoviECard({ movie,showDetailedMovie }) {
     return (
-        <div key={movie.id} className="group snap-center movie flex m-1 rounded-md">
-            <div className=" w-[100px] h-[150px] flex items-center relative">
-                <img className="rounded-xl m-1 border border-white w-[90%] h-[90%] p-1" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.png'} alt={movie.original_title.slice(0,10)} />
-            </div>
-            <div className="m-1 shrink relative">
-                <p>
-                    <strong className="TextResponsive ">{(movie.original_title).slice(0,25)}</strong>
+        <div key={movie.id} className="group relative flex flex-grow snap-center movie m-1 gap-1 rounded-md w-fit" >
+                <img className="rounded-md m-1 border border-white w-full h-[250px]" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)} />
+            <div className="m-1 absolute p-1">
+                <p className="w-fit rounded-md text-black absolute -top-full">
+                    <strong className="">{(movie.original_title).slice(0,25)}</strong>
                 </p>
                 <div className="flex w-full gap-1">
                     <p className={` flex items-center rounded-md my-1 text-black w-min p-[2px] ${movie?.vote_average >= 8 ? 'bg-green-500' :movie?.vote_average >= 7 ? 'bg-green-600' :movie?.vote_average >= 6 ? 'bg-yellow-400' : movie?.vote_average >= 5 ? 'bg-orange-400' :movie?.vote_average >= 4 ? 'bg-red-400' : movie?.vote_average >= 2 ? 'bg-red-500' : 'bg-red-700'}`}>
@@ -51,8 +53,8 @@ function MoviECard({ movie }) {
                         <span className=" text-indigo-950 drop-shadow-xl"><FaUsers1 /></span>
                     </p>
                 </div>
-                <p className="group text-sm flex items-center ">{movie.release_date}<span className="ms-2"> <BsCalendar31 /></span></p>
-                <p className={'hidden  group-hover:flex absolute top-[40%] items-center justify-center gap-1 rounded-md my-1 py-2 cursor-pointer w-full bg-Secondbm opacity-75 hover:opacity-100 hover:scale-105'}>
+                <p className={'flex w-fit  p-1 rounded-md my-1 cursor-pointer bg-Secondbm opacity-100 hover:scale-105'} onClick={() =>
+                {showDetailedMovie(movie.id)}}>
                         <span className=" mx-1 text-xs font-medium"> show details </span>
                         <span className=" text-indigo-950 text-xs drop-shadow-xl"><FaArrowUpRightFromSquare1 /></span>
                     </p>
@@ -83,38 +85,38 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
         </div>
     )
 }
-function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding}) {
+function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding, Tranding,popular,Upcoming,topRatedMovies}) {
     return (
         <div id={'tabs'} className="flex gap-2 overflow-auto  justify-center items-center w-full p-1 mb-1 shadow-md shadow-black rounded-md bg-Secondbm " >
             <span> </span>
             <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'topMovies'?'bg-bleuM-200 scale-105':'bg-bleuM-200 opacity-50'}`} onClick={() => {
-                showTopMovies()
-                setshowedData('topMovies');
                 setPage(1)
+                showedData!=='topMovies'&&setshowedData('topMovies');
+                showedData!=='topMovies'&& topRatedMovies.length<=0&&showTopMovies()
                 }}>
                 <span className={`  sm:opacity-100 sm:w-full ${showedData === 'topMovies'?'w-full opacity-100':'opacity-0 w-0'}`   }>Top</span>
                 <span className="mx-1 flex"><IoIosPodium1 /></span>
             </button>
             <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'popMovies'?'bg-bleuM-200 scale-105':' bg-bleuM-200 opacity-50'}`} onClick={() => {
-                showPopMovies()
-                setshowedData('popMovies')
                 setPage(1)
+                showedData!=='popMovies'&&setshowedData('popMovies')
+                showedData!=='popMovies'&&popular.length<=0&&showPopMovies()
                 }}>
                 <span  className={`sm:opacity-100 sm:w-full ${showedData === 'popMovies'?'w-full opacity-100':'opacity-0 w-0'}`} >Popular</span>
                 <span className="mx-1 "><FaSlideshare1 /></span>
             </button>
             <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'upcoming'?'bg-bleuM-200 scale-105':'bg-bleuM-200 opacity-50'}`}  onClick={() => {
-                showUpcoming() 
-                setshowedData('upcoming')
                 setPage(1)
+                showedData!=='upcoming'&& setshowedData('upcoming')
+                showedData!=='upcoming'&& Upcoming.length<=0&&showUpcoming() 
             }}>
                 <span  className={`  sm:opacity-100 sm:w-full ${showedData === 'upcoming'?'w-full opacity-100':'opacity-0 w-0'}`} >Recents</span>
                 <span className="mx-1 text-xl"><GiExtraTime1 /></span>
             </button>
             <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'tranding'?'bg-bleuM-200 scale-105':' bg-bleuM-200 opacity-50'}`}  onClick={() => {
-                showTranding() 
-                setshowedData('tranding')
                 setPage(1)
+                showedData !== 'tranding' && setshowedData('tranding');
+                showedData !== 'tranding' &&Tranding.length<=0 && showTranding() 
             }}>
                 <span  className={`  sm:opacity-100 sm:w-full ${showedData === 'tranding'?'w-full opacity-100':'opacity-0 w-0'}`} >Tranding</span>
                 <span className="mx-1 text-xl"><SiFireship1 /></span>
@@ -130,7 +132,45 @@ function EmptyList(hidden) {
         </div>
     )
 }
-
+function Loader() {
+    return (
+        <div className="h-[70vh]">
+            <div class="relative w-full flex m-1 animate-pulse gap-2 p-1">
+                <div class="h-[120px] w-[90px] m-1 rounded-md bg-slate-400"></div>
+                <div class="flex-1 w-max my-1">
+                    <div class="mb-1 w-3/4 h-6 rounded-lg bg-slate-400 text-lg"></div>
+                    <div class="flex gap-1 w-1/2">
+                        <div class="h-7 w-[25%] rounded-lg bg-slate-400 text-sm"></div>
+                        <div class="h-7  w-[30%] rounded-lg bg-slate-400 text-sm"></div>
+                    </div>
+                    <div class="my-1 h-5 w-1/3 rounded-lg bg-slate-400 text-lg"></div>
+                </div>
+            </div>
+            <div class="relative w-full flex m-1 animate-pulse gap-2 p-1">
+                <div class="h-[120px] w-[90px] m-1 rounded-md bg-slate-400"></div>
+                <div class="flex-1 w-max my-1">
+                    <div class="mb-1 w-3/4 h-6 rounded-lg bg-slate-400 text-lg"></div>
+                    <div class="flex gap-1 w-1/2">
+                        <div class="h-7 w-[25%] rounded-lg bg-slate-400 text-sm"></div>
+                        <div class="h-7  w-[30%] rounded-lg bg-slate-400 text-sm"></div>
+                    </div>
+                    <div class="my-1 h-5 w-1/3 rounded-lg bg-slate-400 text-lg"></div>
+                </div>
+            </div>
+            <div class="relative w-full flex m-1 animate-pulse gap-2 p-1">
+                <div class="h-[120px] w-[90px] m-1 rounded-md bg-slate-400"></div>
+                <div class="flex-1 w-max my-1">
+                    <div class="mb-1 w-3/4 h-6 rounded-lg bg-slate-400 text-lg"></div>
+                    <div class="flex gap-1 w-1/2">
+                        <div class="h-7 w-[25%] rounded-lg bg-slate-400 text-sm"></div>
+                        <div class="h-7  w-[30%] rounded-lg bg-slate-400 text-sm"></div>
+                    </div>
+                    <div class="my-1 h-5 w-1/3 rounded-lg bg-slate-400 text-lg"></div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 
 

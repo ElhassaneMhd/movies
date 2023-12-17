@@ -18,8 +18,21 @@ import { FaUsers } from "react-icons/fa";
 import { GiExtraTime } from "react-icons/gi";
 import { IoIosPodium } from "react-icons/io";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { PiKeyReturnFill } from "react-icons/pi";
+import { PiFilePlusFill } from "react-icons/pi";
 
 
+
+export function PiFilePlusFill1() {
+    return (
+        <PiFilePlusFill/>
+    )
+}
+export function IoMdReturnLeft1() {
+    return (
+        <PiKeyReturnFill/>
+    )
+}
 export function FaArrowUpRightFromSquare1() {
     return (
         <FaArrowUpRightFromSquare/>

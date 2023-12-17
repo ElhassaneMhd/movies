@@ -1,7 +1,9 @@
 /* src/styles/fontawesome.css */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
 
-
+* {
+  font-family: sans-serif;
+}
 
 :root {
   --Secondbm: #01629c;
