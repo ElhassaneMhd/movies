@@ -7,11 +7,11 @@ import {
   getTopRatedMovies,
   getUpcoming,
   getDataByName,
-  getAllMovieDetails,
+
 } from "./functions.js";
 import { Header } from "./SimpleComponent/header.jsx";
 import { SerchedMovies } from "./jsx/searche.jsx";
-import { Home } from "./jsx/Home.jsx";
+//import { Home } from "./jsx/Home.jsx";
 import { DetailedMovie } from "./jsx/DetailedMovie.jsx";
 import { WatchedMovies } from "./jsx/watched.jsx";
 import { Footer } from "./SimpleComponent/footer.jsx";
@@ -27,18 +27,25 @@ function App() {
   const [Tranding, setTranding] = useState([]);
   const [detailedMovie, setdetailedMovie] = useState(null);
   const [showWatchedList,setshowWatchedList]=useState(false)
-  const [allDetailedMovies, setallDetailedMovies] = useState([]);
+ // const [allDetailedMovies, setallDetailedMovies] = useState([]);
   const [watchedListe, setToWatchedListe] = useState([]);
   useEffect(() => {
+      function showFirstTopMovies() {
+        getFirstTopRatedMovies(
+          setonLoad,
+          onLoad,
+          seterrOnLoad,
+          setpopMovies,
+          1
+        );
+      }
     showFirstTopMovies();
   }, []);
   //useEffect(() => {
   //   popMovies.forEach((movie) => showALLDetailedMovie(movie.id));
   // }, [popMovies]);
 
-  function showFirstTopMovies() {
-    getFirstTopRatedMovies(setonLoad, onLoad, seterrOnLoad, setpopMovies, 1);
-  }
+
   function showPopMovies(page) {
     getPopularMovies(setonLoad, onLoad, seterrOnLoad, setpopMovies, page);
   }

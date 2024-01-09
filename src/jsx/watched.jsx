@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
     MdDeleteForever1,
     IoMdCloseCircle1,
@@ -20,7 +19,7 @@ export function WatchedMovies({ watchedListe ,setToWatchedListe,setshowWatchedLi
                 <Allmovies watchedListe={watchedListe} handelDelet={handelDelet}/>
             </>
         ) :  (
-                <EmptyListe watchedListe={watchedListe}    setshowWatchedList={setshowWatchedList} hidden={false}/>
+                <EmptyListe watchedListe={watchedListe} setshowWatchedList={setshowWatchedList} hidden={false}/>
             )
         }
     </div>
@@ -55,7 +54,7 @@ function Allmovies({watchedListe,handelDelet}) {
         </div>
     )
 }
-function EmptyListe({watchedListe,hidden,setshowWatchedList}) {
+function EmptyListe({hidden,setshowWatchedList}) {
     return (
         <>
             <Showbtn  setshowWatchedList={setshowWatchedList} />

@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import "../styles/App.css";
-import { SiFireship1,FaSlideshare1,GiPopcorn1,GiExtraTime1,IoIosPodium1, FaArrowUpRightFromSquare1,PiFilePlusFill1,TiStarFullOutline1} from "../icons.jsx";
+import { SiFireship1,FaSlideshare1,GiPopcorn1,GiExtraTime1,IoIosPodium1, FaArrowUpRightFromSquare1,TiStarFullOutline1} from "../icons.jsx";
 import { Loader } from "../SimpleComponent/loader.jsx";
 export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,showTopMovies,showPopMovies,showUpcoming ,showTranding,Tranding,showDetailedMovie,onLoad,errOnLoad}) {
     const [showedData, setshowedData] = useState('popMovies');
@@ -132,13 +132,13 @@ function EmptyList(hidden) {
         </div>
     )
 }
-function ErrorNetwork() {
-    return (
-        <div>
+// function ErrorNetwork() {
+//     return (
+//         <div>
             
-        </div>
- )   
-}
+//         </div>
+//  )   
+// }
 
 
 

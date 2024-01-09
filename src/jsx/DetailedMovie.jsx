@@ -11,7 +11,8 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
     function checkAfterAdd() {
         !watchedListe.map(movie => movie.id).includes(detailedMovie.id) 
             ? addToWatchedListe([...watchedListe, detailedMovie])
-            :setalreadyExists(true)
+            : setalreadyExists(true)
+        console.log(alreadyExists)
     }
 
     return (
