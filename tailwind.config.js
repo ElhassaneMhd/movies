@@ -6,12 +6,12 @@ module.exports = {
       colors: {
         light: " #00fff9",
         bleuM: {
-          100: "rgb(0, 41, 111)",
-          200: "rgba(0, 41, 111,0.5)",
-          300: "#345e9e", // Add another shade
-          400: "rgba(52, 94, 158, 0.5)",
+          100: "rgb(51,51,51)",
+          200: "rgba(102,102,102,0.5)",
+          300: "rgb(154,154,154)", // Add another shade
+          400: "rgba(102,102,102)",
         },
-        Secondbm: "#01629c",
+        Secondbm: "rgb(154,154,154)",
       },
       screens: {
         mobile: { min: "250px", max: "640" },

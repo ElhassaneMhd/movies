@@ -1,7 +1,5 @@
 import { MdManageSearch } from "react-icons/md";
-import { FaArrowCircleUp } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
-import { FaArrowCircleDown } from "react-icons/fa";
 import { SiThemoviedatabase } from "react-icons/si";
 import { FcRating } from "react-icons/fc";
 import { PiClockCounterClockwiseDuotone } from "react-icons/pi";
@@ -20,8 +18,21 @@ import { IoIosPodium } from "react-icons/io";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { PiKeyReturnFill } from "react-icons/pi";
 import { PiFilePlusFill } from "react-icons/pi";
+import { CiMenuKebab } from "react-icons/ci";
+import { IoMdCloseCircle } from "react-icons/io";
 
 
+
+export function IoMdCloseCircle1() {
+    return (
+        <IoMdCloseCircle/>
+    )
+}
+export function CiMenuKebab1() {
+    return (
+        <CiMenuKebab/>
+    )
+}
 
 export function PiFilePlusFill1() {
     return (
@@ -103,11 +114,6 @@ export function PiClockCounterClockwiseDuotone1() {
         <PiClockCounterClockwiseDuotone/>
     )
 }
-export function FaArrowCircleDown1() {
-    return (
-        <FaArrowCircleDown/>
-    )
-}
 export function FcRating1() {
     return (
         <FcRating/>
@@ -123,11 +129,7 @@ export function MdManageSearch1() {
         <MdManageSearch />
     )
 }
-export function FaArrowCircleUp1() {
-    return (
-        <FaArrowCircleUp />
-    )
-}
+
 export function MdDeleteForever1() {
     return (
         <MdDeleteForever />

@@ -14,7 +14,6 @@ export const getPopularMovies = async (
     },
   };
   setonLoad({ ...onLoad, searched: true });
-  console.log(onLoad);
   seterrOnLoad(false);
   await fetch(
     `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
@@ -52,7 +51,13 @@ export const getTopRatedMovies = async (
     .then(() => setonLoad({ ...onLoad, searched: false }))
     .catch(() => seterrOnLoad(true));
 };
-export const getFirstTopRatedMovies = async (setpopMovies) => {
+export const getFirstTopRatedMovies = async (
+  setonLoad,
+  onLoad,
+  seterrOnLoad,
+  setpopMovies,
+  page = 1
+) => {
   const options = {
     method: "GET",
     headers: {
@@ -61,13 +66,16 @@ export const getFirstTopRatedMovies = async (setpopMovies) => {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWVmYTExOGExNzQwMzZkZTFhYjVlODYwYjdlMzViMiIsInN1YiI6IjY1NzEyNDc4YjA0NjA1MDExZDcyMmVjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TiGZd5g4nlw3bhAOPTUNySIgFHAR29JMEXufvWewCsU",
     },
   };
+  setonLoad({ ...onLoad, searched: true });
+  seterrOnLoad(false);
   await fetch(
-    `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`,
     options
   )
     .then((response) => response.json())
     .then((response) => setpopMovies(response.results))
-    .catch((err) => console.log(err));
+    .then(() => setonLoad({ ...onLoad, searched: false }))
+    .catch(() => seterrOnLoad(true));
 };
 export const getDataByName = async (
   setonLoad,
@@ -137,7 +145,7 @@ export const getTranding = async (
   };
   setonLoad({ ...onLoad, searched: true });
   seterrOnLoad(false);
-  fetch(
+  await fetch(
     "https://api.themoviedb.org/3/trending/movie/day?language=en-US",
     options
   )
@@ -163,9 +171,27 @@ export const getMovieDetails = async (
   };
   setonLoad({ ...onLoad, detailed: true });
   seterrOnLoad(false);
-  fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+  await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
     .then((response) => response.json())
     .then((response) => setdetailedMovie(response))
     .then(() => setonLoad({ ...onLoad, detailed: false }))
     .catch(() => seterrOnLoad(true));
+};
+export const getAllMovieDetails = async (
+  id,
+  setAlldetailedMovie,
+  allDetailedMovies
+) => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWVmYTExOGExNzQwMzZkZTFhYjVlODYwYjdlMzViMiIsInN1YiI6IjY1NzEyNDc4YjA0NjA1MDExZDcyMmVjMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TiGZd5g4nlw3bhAOPTUNySIgFHAR29JMEXufvWewCsU",
+    },
+  };
+  await fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+    .then((response) => response.json())
+    .then((response) => setAlldetailedMovie([...allDetailedMovies, {...response}]))
+    .catch(() => console.log("error"));
 };

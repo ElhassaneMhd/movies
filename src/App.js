@@ -7,12 +7,14 @@ import {
   getTopRatedMovies,
   getUpcoming,
   getDataByName,
+  getAllMovieDetails,
 } from "./functions.js";
-import { Header } from "./jsx/header.jsx";
+import { Header } from "./SimpleComponent/header.jsx";
 import { SerchedMovies } from "./jsx/searche.jsx";
+import { Home } from "./jsx/Home.jsx";
 import { DetailedMovie } from "./jsx/DetailedMovie.jsx";
 import { WatchedMovies } from "./jsx/watched.jsx";
-import { Footer } from "./jsx/footer.jsx";
+import { Footer } from "./SimpleComponent/footer.jsx";
 import { useEffect, useState } from "react";
 function App() {
   const [toSearch, setToSearch] = useState("");
@@ -24,19 +26,26 @@ function App() {
   const [Upcoming, setUpcoming] = useState([]);
   const [Tranding, setTranding] = useState([]);
   const [detailedMovie, setdetailedMovie] = useState(null);
+  const [showWatchedList,setshowWatchedList]=useState(false)
+  const [allDetailedMovies, setallDetailedMovies] = useState([]);
   const [watchedListe, setToWatchedListe] = useState([]);
   useEffect(() => {
     showFirstTopMovies();
   }, []);
+  //useEffect(() => {
+  //   popMovies.forEach((movie) => showALLDetailedMovie(movie.id));
+  // }, [popMovies]);
+
+  function showFirstTopMovies() {
+    getFirstTopRatedMovies(setonLoad, onLoad, seterrOnLoad, setpopMovies, 1);
+  }
   function showPopMovies(page) {
     getPopularMovies(setonLoad, onLoad, seterrOnLoad, setpopMovies, page);
   }
   function showTopMovies(page) {
     getTopRatedMovies(setonLoad, onLoad, seterrOnLoad, settopRatedMovies, page);
   }
-  function showFirstTopMovies() {
-    getFirstTopRatedMovies(settopRatedMovies);
-  }
+
   function showUpcoming(page) {
     getUpcoming(setonLoad, onLoad, seterrOnLoad, setUpcoming, page);
   }
@@ -49,6 +58,9 @@ function App() {
   function showDetailedMovie(id) {
     getMovieDetails(setonLoad, onLoad, seterrOnLoad, id, setdetailedMovie);
   }
+  // function showALLDetailedMovie(id) {
+  //   getAllMovieDetails(id, setallDetailedMovies, allDetailedMovies);
+  // }
   return (
     <div className="flex flex-col h-full">
       <Header
@@ -58,41 +70,57 @@ function App() {
         getDataByName={getDataByName}
         showByname={showByname}
         setToSearch={setToSearch}
+        setshowWatchedList={setshowWatchedList}
       />
-      <div className="flex flex-col md:flex-row md:justify-center md:items-start justify-center items-center">
-        <div className="rounded-md ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col  flex text-white bg-bleuM-100  ">
-          <SerchedMovies
-            onLoad={onLoad.searched}
-            errOnLoad={errOnLoad}
-            toSearch={toSearch}
-            findedByName={findedByName}
-            popular={popMovies}
-            topRatedMovies={topRatedMovies}
-            Upcoming={Upcoming}
-            Tranding={Tranding}
-            showTopMovies={showTopMovies}
-            showPopMovies={showPopMovies}
-            showUpcoming={showUpcoming}
-            showTranding={showTranding}
-            showDetailedMovie={showDetailedMovie}
-          />
-        </div>
-        <div className=" rounded-md ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh]  md:w-[49%] p-2 flex-col flex text-white bg-bleuM-100">
-          {detailedMovie ? (
-            <DetailedMovie
-              onLoad={onLoad.detailed}
+      <div className="w-full">
+        {/* <Home
+          popMovies={popMovies}
+          showALLDetailedMovie={showALLDetailedMovie}
+          allDetailedMovies={allDetailedMovies}
+        /> */}
+        <div className="flex flex-col overflow-hidden justify-center items-center ">
+          <div className="ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh] flex-col flex  text-white bg-black  ">
+            <SerchedMovies
+              onLoad={onLoad.searched}
+              errOnLoad={errOnLoad}
+              toSearch={toSearch}
+              findedByName={findedByName}
+              popular={popMovies}
+              topRatedMovies={topRatedMovies}
+              Upcoming={Upcoming}
+              Tranding={Tranding}
+              showTopMovies={showTopMovies}
+              showPopMovies={showPopMovies}
+              showUpcoming={showUpcoming}
+              showTranding={showTranding}
               showDetailedMovie={showDetailedMovie}
-              detailedMovie={detailedMovie}
-              setdetailedMovie={setdetailedMovie}
-              watchedListe={watchedListe}
-              addToWatchedListe={setToWatchedListe}
             />
-          ) : (
-            <WatchedMovies
-              watchedListe={watchedListe}
-              setToWatchedListe={setToWatchedListe}
-            />
-          )}
+          </div>
+          <div
+            className={`rounded-md h-full w-full transition duration-500 absolute ${
+              detailedMovie || showWatchedList
+                ? "w-3/4 visible"
+                : "w-0 invisible"
+            } flex-col items-center justify-center flex text-white backdrop-blur-md `}
+          >
+            {detailedMovie ? (
+              <DetailedMovie
+                onLoad={onLoad.detailed}
+                showDetailedMovie={showDetailedMovie}
+                detailedMovie={detailedMovie}
+                setdetailedMovie={setdetailedMovie}
+                watchedListe={watchedListe}
+                addToWatchedListe={setToWatchedListe}
+                setshowWatchedList={setshowWatchedList}
+              />
+            ) : (
+              <WatchedMovies
+                watchedListe={watchedListe}
+                setToWatchedListe={setToWatchedListe}
+                setshowWatchedList={setshowWatchedList}
+              />
+            )}
+          </div>
         </div>
       </div>
       <Footer />

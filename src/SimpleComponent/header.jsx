@@ -1,12 +1,15 @@
 
-import {  MdManageSearch1,SiThemoviedatabase1} from '../icons'
+import {  MdManageSearch1,SiThemoviedatabase1,CiMenuKebab1} from '../icons'
 
-export function Header({toSearch,findedByName,setFindedByName, setToSearch,showByname}) {
+export function Header({toSearch,findedByName,setFindedByName, setToSearch,showByname,setshowWatchedList}) {
   return (
-    <div className="header m-1 mb-0 p-1 px-5 rounded-md text-white bg-bleuM-100 flex justify-between items-center">
+    <div className="header m-1 mb-0 p-1 px-5 rounded-md text-white bg-black flex justify-between items-center">
       <Logo />
       <InputToSearch toSearch={toSearch } setFindedByName={setFindedByName} showByname={showByname} setToSearch={setToSearch}/>
-      <FindedResults findedByName={findedByName} toSearch={toSearch}/>
+      <FindedResults findedByName={findedByName} toSearch={toSearch} />
+        <div onClick={()=>setshowWatchedList(true)} className='cursor-pointer'>
+          <span className='text-2xl' ><CiMenuKebab1 /></span>
+      </div>
     </div>
   );
 }
@@ -20,7 +23,7 @@ function InputToSearch({ setFindedByName,toSearch, setToSearch ,showByname}) {
       <input
         autoFocus={true}
           maxLength={20}
-        className="peer p-2 rounded-xl  outline-none  border-none focus:scale-x-105 transition duration-500 focus:border-none w-[100%] focus:outline-none focus:p-2 pe-[30px] focus:pe-[30px] font-bold text-white bg-Secondbm"
+        className="peer p-2 rounded-md outline-none  border-none focus:scale-x-105 transition duration-500 focus:border-none w-[100%] focus:outline-none focus:p-2 pe-[30px] focus:pe-[30px] font-bold text-white bg-Secondbm"
         
         onChange={(e) => {
           e.target.value.trim().length >= 2 ? setToSearch(e.target.value):setToSearch('')
