@@ -12,7 +12,7 @@ export function WatchedMovies({ watchedListe ,setToWatchedListe,setshowWatchedLi
         setToWatchedListe(watchedListe.filter((e) => e?.id !== id));
     }
     return (
-    <div className="relative bg-blackc w-5/6 p-3 rounded-md min-h-[50dvh] border border-white">
+    <div className="relative bg-bleuM-300 p-3 rounded-md h-[90%] w-[90%] md:h-[70dvh] md:w-5/6 border-bleuM-200 border">
         {(watchedListe.length > 0)? (
             <>
                 <HeaderWatched  setshowWatchedList={setshowWatchedList} watchedListe={watchedListe} />
@@ -38,7 +38,7 @@ function HeaderWatched({watchedListe,show,handelShow,setshowWatchedList}) {
 function Showbtn({setshowWatchedList}) {
     return (
         <span
-            className="absolute text-white cursor-pointer grid place-content-center self-end right-0 mx-5 my-1 bg-black rounded-full text-xl hover:animate-spin "
+            className="absolute text-black cursor-pointer grid place-content-center self-end right-0 mx-5 my-1 bg-Secondbm rounded-full text-xl hover:animate-spin "
             onClick={()=>setshowWatchedList(false)}
         >
         <IoMdCloseCircle1 />
@@ -58,11 +58,11 @@ function EmptyListe({hidden,setshowWatchedList}) {
     return (
         <>
             <Showbtn  setshowWatchedList={setshowWatchedList} />
-            <p className="p-3 mb-2 shadow-md shadow-black rounded-md  bg-Secondbm ">
-                "you have any watched movie" 
+            <p className="p-3 mb-2 text-black rounded-md  bg-Secondbm ">
+                0 watched movie
             </p>
-            <div className="flex items-center justify-center flex-col">
-                <span className=" text-9xl m-5">  <RiFileList3Line1 /></span>
+            <div className="flex items-center text-Secondbm justify-center flex-col">
+                <span className=" text-9xl  m-5">  <RiFileList3Line1 /></span>
                 <strong className="p-2">{hidden? 'your watch liste is hidden':'your watch liste is empty'}</strong>
             </div>
         </>

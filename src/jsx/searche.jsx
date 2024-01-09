@@ -38,16 +38,16 @@ function AllMovies({ data,setdetailedID,showDetailedMovie }) {
 function MoviECard({ movie, showDetailedMovie }) {
   
     return (
-        <div key={movie.id} className="group flex flex-col flex-wrap flex-grow snap-center movie m-1 gap-1 rounded-md" >
-            <div className="group relative flex cursor-pointer justify-center items-center w-full " onClick={() =>
+        <div key={movie.id} className="group flex flex-col flex-wrap w-[45%] md:w-auto  snap-center movie m-1 gap-1 rounded-md" >
+            <div className="group relative flex cursor-pointer justify-center items-center w-fit " onClick={() =>
                     {showDetailedMovie(movie.id)}}>
-                <img loading="lazy" className="rounded-md m-auto border w-[180px]  border-white group-hover:backdrop-contrast-50" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)}/>    
+                <img loading="lazy" className=" w-fit sm:min-w-[200px] sm:max-w-[240px] shadow-sm shadow-Secondbm group-hover:opacity-40" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)}/>    
                     <p className={`absolute flex self-end rounded-md m-3 text-black w-min p-[2px] ${movie?.vote_average >= 8 ? 'bg-green-500' :movie?.vote_average >= 7 ? 'bg-green-600' :movie?.vote_average >= 6 ? 'bg-yellow-400' : movie?.vote_average >= 5 ? 'bg-orange-400' :movie?.vote_average >= 4 ? 'bg-red-400' : movie?.vote_average >= 2 ? 'bg-red-500' : 'bg-red-700'}`}>
                         <strong className=" mx-1 text-sm font-medium"> {(movie?.vote_average).toFixed(2)} </strong>
                         <span className=" text-indigo-950 "><TiStarFullOutline1 /></span>
                 </p>  
-                 <p className='absolute p-1 rounded-md cursor-pointer bg-black hover:scale-105 invisible group-hover:visible' >
-                    <span className=" text-white text-2xl drop-shadow-xl"><FaArrowUpRightFromSquare1 /></span>
+                 <p className='absolute p-1 rounded-md cursor-pointer bg-Secondbm hover:scale-105 invisible group-hover:visible' >
+                    <span className=" text-black text-2xl drop-shadow-xl"><FaArrowUpRightFromSquare1 /></span>
                 </p>  
             </div>
             <div className="text-center w-full">
@@ -70,15 +70,15 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
         showedData==='tranding' && showTranding()
     }
     return (
-        <div className="flex mt-1 gap-1 justify-center items-center w-full bg-black rounded-md border-white border  m-auto" >
+        <div className="flex mt-1 gap-1 justify-center items-center w-full bg-black rounded-md border-Secondbm border  m-auto" >
             {page > 1 &&
-            <input type="button" className=" hover:bg-red-700 cursor-pointer bg-bleuM-200 rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
+            <input type="button" className=" hover:bg-black hover:border-Secondbm hover:border cursor-pointer bg-Secondbm rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
                     setPage(+e.target.value)
                     readMore(showedData, +e.target.value);
                 }} value={page-1} />
                 }
-            <input type="button" className=" border-2 m-1 border-zinc-50 rounded-xl px-2 py-1 font-bold shadow-black shadow-sm scale-110" value={page} />
-            <input type="button" className=" hover:bg-red-700 cursor-pointer bg-bleuM-200 flex rounded-xl px-2 py-1 font-bold items-center hover:scale-105 shadow-black shadow-sm duration-500 " onClick={(e) => {
+            <input type="button" className=" border-2 m-1 border-Secondbm text-Secondbm rounded-xl px-2 py-1 font-bold shadow-black shadow-sm scale-110" value={page} />
+            <input type="button" className=" hover:bg-black hover:border-Secondbm hover:border  cursor-pointer bg-Secondbm flex rounded-xl px-2 py-1 font-bold items-center hover:scale-105 shadow-black shadow-sm duration-500 " onClick={(e) => {
                     setPage(+e.target.value)
                     readMore(showedData, +e.target.value)
                 }} value={page+1}/>
@@ -87,7 +87,7 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
 }
 function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding, Tranding,popular,Upcoming,topRatedMovies}) {
     return (
-        <div id={'tabs'} className="flex gap-2 h-[6h] md:h-[8vh] overflow-auto justify-center items-center w-full p-1 mb-1 border border-white rounded-md bg-black" >
+        <div id={'tabs'} className="flex gap-2 h-[6h] w-full overflow-auto justify-center items-center p-1 mb-1 border border-Secondbm rounded-md bg-black" >
             <span> </span>
             <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'topMovies'?'bg-Secondbm scale-105':'bg-Secondbm opacity-50'}`} onClick={() => {
                 setPage(1)
@@ -127,8 +127,8 @@ function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,show
 function EmptyList(hidden) {
     return (
         <div className="flex items-center justify-center flex-col h-full">
-            <span className=" text-9xl m-5">  <GiPopcorn1 /></span>
-            <strong className="p-2">{hidden?"no movies found ":"hidden section"}</strong>
+            <span className=" text-9xl m-5 text-Secondbm">  <GiPopcorn1 /></span>
+            <strong className="p-2 text-Secondbm">{hidden?"no movies found ":"hidden section"}</strong>
         </div>
     )
 }

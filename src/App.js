@@ -7,7 +7,6 @@ import {
   getTopRatedMovies,
   getUpcoming,
   getDataByName,
-
 } from "./functions.js";
 import { Header } from "./SimpleComponent/header.jsx";
 import { SerchedMovies } from "./jsx/searche.jsx";
@@ -26,26 +25,20 @@ function App() {
   const [Upcoming, setUpcoming] = useState([]);
   const [Tranding, setTranding] = useState([]);
   const [detailedMovie, setdetailedMovie] = useState(null);
-  const [showWatchedList,setshowWatchedList]=useState(false)
- // const [allDetailedMovies, setallDetailedMovies] = useState([]);
+  const [showWatchedList, setshowWatchedList] = useState(false);
+  // const [allDetailedMovies, setallDetailedMovies] = useState([]);
   const [watchedListe, setToWatchedListe] = useState([]);
   useEffect(() => {
-      function showFirstTopMovies() {
-        getFirstTopRatedMovies(
-          setonLoad,
-          onLoad,
-          seterrOnLoad,
-          setpopMovies,
-          1
-        );
-      }
     showFirstTopMovies();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   //useEffect(() => {
   //   popMovies.forEach((movie) => showALLDetailedMovie(movie.id));
   // }, [popMovies]);
 
-
+  function showFirstTopMovies() {
+    getFirstTopRatedMovies(setonLoad, onLoad, seterrOnLoad, setpopMovies, 1);
+  }
   function showPopMovies(page) {
     getPopularMovies(setonLoad, onLoad, seterrOnLoad, setpopMovies, page);
   }
@@ -86,7 +79,7 @@ function App() {
           allDetailedMovies={allDetailedMovies}
         /> */}
         <div className="flex flex-col overflow-hidden justify-center items-center ">
-          <div className="ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh] flex-col flex  text-white bg-black  ">
+          <div className="ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh] md:h-[82vh] flex-col flex  text-white bg-black  ">
             <SerchedMovies
               onLoad={onLoad.searched}
               errOnLoad={errOnLoad}
@@ -104,7 +97,7 @@ function App() {
             />
           </div>
           <div
-            className={`rounded-md h-full w-full transition duration-500 absolute ${
+            className={`rounded-md -top-0 h-[100dvh] w-full transition duration-500 absolute ${
               detailedMovie || showWatchedList
                 ? "w-3/4 visible"
                 : "w-0 invisible"

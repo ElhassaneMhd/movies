@@ -16,7 +16,7 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
     }
 
     return (
-    <div className='bg-black w-3/4 p-3 rounded-md border'>
+    <div className='bg-bleuM-300 h-[90%] w-[90%] md:h-[70dvh] md:w-5/6 p-3 rounded-md border-bleuM-200 border'>
         <div className='h-full w-full relative overflow-auto'>
                 {onLoad &&
                     <div className='h-full text-center flex items-center justify-center w-full'>
@@ -43,8 +43,8 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                             <p className='flex gap-1 items-center' onClick={() => console.log(detailedMovie)}> imdb rating :{detailedMovie.vote_average.toFixed(2)}
                                 <span className='text-lg'><TiStarFullOutline1 /></span>
                             </p>
-                            <p className='flex items-center gap-1'>
-                              genres :   {detailedMovie.genres.map(e=><span className='px-1 bg-bleuM-100 rounded-md'>{e.name}</span>)}
+                            <p className='flex items-center  gap-1 flex-wrap'>
+                              genres :   {detailedMovie.genres.map(e=><span className='px-1 bg-Secondbm rounded-md'>{e.name}</span>)}
                             </p>
                             <p>
                                 runtime : {detailedMovie.runtime } min
@@ -52,15 +52,15 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                         </div>
                 </div>     
                 <div className='summary p-2 mx-1'>
-                    <div className='my-2'>
+                    <div className='my-2 italic'>
                         {readMore
-                            ?<p className='cursor-pointer p-2 rounded-md transitcion duration-500 hover:bg-bleuM-300' onClick={() => setReadMore(false)} >{detailedMovie.overview }... </p>  
-                            :<p className='cursor-pointer p-2 rounded-md  transition duration-500 hover:bg-bleuM-300' onClick={() => setReadMore(true)} >{detailedMovie.overview.slice(0, 200)}</p>
+                            ?<p className='cursor-pointer p-2 rounded-md transitcion duration-500 hover:bg-bleuM-400' onClick={() => setReadMore(false)} >{detailedMovie.overview }... </p>  
+                            :<p className='cursor-pointer p-2 rounded-md  transition duration-500 hover:bg-bleuM-400' onClick={() => setReadMore(true)} >{detailedMovie.overview.slice(0, 200)}</p>
                         }
                     </div>
                      <div className='flex gap-1'>
-                            <button className='flex bg-yellow-500 items-center p-1 rounded-md hover:bg-bleuM-300 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
-                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-yellow-500 items-center p-1 rounded-md hover:bg-bleuM-300 '>Web Site</a>
+                            <button className='flex bg-yellow-500 items-center p-1 rounded-md hover:bg-bleuM-400 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
+                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-yellow-500 items-center p-1 rounded-md hover:bg-bleuM-400 '>Web Site</a>
                         </div>   
                 </div>
             </>

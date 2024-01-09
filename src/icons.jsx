@@ -1,4 +1,4 @@
-import { MdManageSearch } from "react-icons/md";
+import { FaSearch } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { SiThemoviedatabase } from "react-icons/si";
 import { FcRating } from "react-icons/fc";
@@ -119,16 +119,17 @@ export function FcRating1() {
         <FcRating/>
     )
 }
+export function FaSearch1() {
+    return (
+        <FaSearch/>
+    )
+}
 export function SiThemoviedatabase1() {
     return (
         <SiThemoviedatabase/>
     )
 }
-export function MdManageSearch1() {
-    return (
-        <MdManageSearch />
-    )
-}
+
 
 export function MdDeleteForever1() {
     return (
