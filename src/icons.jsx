@@ -7,16 +7,21 @@ import { RiUserStarLine } from "react-icons/ri";
 import { BsCalendar3 } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { FaRegCopyright } from "react-icons/fa";
+import { GiPopcorn } from "react-icons/gi";
 import { RiFileList3Line } from "react-icons/ri";
 import { TiStarFullOutline } from "react-icons/ti";
+import { SiFireship } from "react-icons/si";
+import { FaSlideshare } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { GiExtraTime } from "react-icons/gi";
+import { IoIosPodium } from "react-icons/io";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { PiKeyReturnFill } from "react-icons/pi";
 import { PiFilePlusFill } from "react-icons/pi";
 import { CiMenuKebab } from "react-icons/ci";
 import { IoMdCloseCircle } from "react-icons/io";
-import { TbMovieOff } from "react-icons/tb";
+
+
 
 export function IoMdCloseCircle1() {
     return (
@@ -28,6 +33,7 @@ export function CiMenuKebab1() {
         <CiMenuKebab/>
     )
 }
+
 export function PiFilePlusFill1() {
     return (
         <PiFilePlusFill/>
@@ -43,14 +49,29 @@ export function FaArrowUpRightFromSquare1() {
         <FaArrowUpRightFromSquare/>
     )
 }
+export function IoIosPodium1() {
+    return (
+        <IoIosPodium/>
+    )
+}
 export function GiExtraTime1() {
     return (
         <GiExtraTime/>
     )
 }
+export function FaSlideshare1() {
+    return (
+        <FaSlideshare/>
+    )
+}
 export function FaUsers1() {
     return (
         <FaUsers/>
+    )
+}
+export function SiFireship1() {
+    return (
+        <SiFireship/>
     )
 }
 export function TiStarFullOutline1() {
@@ -65,7 +86,7 @@ export function RiFileList3Line1() {
 }
 export function GiPopcorn1() {
     return (
-        <TbMovieOff/>
+        <GiPopcorn/>
     )
 }
 export function FaRegCopyright1() {
@@ -108,6 +129,8 @@ export function SiThemoviedatabase1() {
         <SiThemoviedatabase/>
     )
 }
+
+
 export function MdDeleteForever1() {
     return (
         <MdDeleteForever />

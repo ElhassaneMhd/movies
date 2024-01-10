@@ -41,9 +41,9 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                     <div className=" w-full  md:w-[50%] flex ">
                         <img className="brightness-50 rounded-md" src={detailedMovie.backdrop_path?"https://image.tmdb.org/t/p/original"+detailedMovie.backdrop_path:'/images/imgNotFound.png'} alt={detailedMovie.original_title.slice(0,10)} />
                         </div>
-                        <div className=' w-full md:w-[50%] p-2'>
+                        <div className=' w-full md:w-[50%] flex flex-col gap-2 p-2'>
                             <p className='flex gap-1 items-center' onClick={() => console.log(detailedMovie)}> imdb rating :{detailedMovie.vote_average.toFixed(2)}
-                                <span className='text-lg'><TiStarFullOutline1 /></span>
+                                <span className='text-lg text-yellow-400'><TiStarFullOutline1 /></span>
                             </p>
                             <p className='flex items-center  gap-1 flex-wrap'>
                               genres :   {detailedMovie.genres.map(e=><span className='px-1 bg-Secondbm rounded-md'>{e.name}</span>)}
@@ -51,19 +51,21 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                             <p>
                                 runtime : {detailedMovie.runtime } min
                             </p>
+                              <div className='flex gap-1'>
+                            <button className='flex bg-bleuM-400 items-center p-1 rounded-md hover:scale-105 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
+                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-bleuM-400 hover:scale-105 items-center p-1 rounded-md  '>Web Site</a>
+                        </div>  
                         </div>
                 </div>     
                 <div className='summary p-2 mx-1'>
-                    <div className='my-2 italic'>
+                        Story :
+                        <div className='my-2 italic'>
                         {readMore
                             ?<p className='cursor-pointer p-2 rounded-md transitcion duration-500 hover:bg-bleuM-400' onClick={() => setReadMore(false)} >{detailedMovie.overview }... </p>  
                             :<p className='cursor-pointer p-2 rounded-md  transition duration-500 hover:bg-bleuM-400' onClick={() => setReadMore(true)} >{detailedMovie.overview.slice(0, 200)}</p>
                         }
                     </div>
-                     <div className='flex gap-1'>
-                            <button className='flex bg-yellow-500 text-black items-center p-1 rounded-md hover:scale-105 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
-                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-yellow-500 text-black hover:scale-105 items-center p-1 rounded-md  '>Web Site</a>
-                        </div>   
+                    
                 </div>
             </>
                 }   

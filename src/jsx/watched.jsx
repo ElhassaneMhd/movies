@@ -37,7 +37,7 @@ function HeaderWatched({watchedListe,show,handelShow,setshowWatchedList}) {
 function Showbtn({setshowWatchedList}) {
     return (
         <span
-            className="absolute cursor-pointer grid place-content-center self-end right-0 m-1 text-red-600 rounded-full text-xl hover:animate-spin "
+            className="absolute cursor-pointer grid place-content-center self-end right-0 m-1 text-white rounded-full text-xl hover:animate-spin "
             onClick={()=>setshowWatchedList(false)}
         >
         <IoMdCloseCircle1 />
@@ -46,7 +46,7 @@ function Showbtn({setshowWatchedList}) {
 }
 function Allmovies({watchedListe,handelDelet}) {
     return (
-        <div className="grid grid-cols-3 snap-y pt-8 h-full overflow-y-scroll scrollbar-thumb-Secondbm  scrollbar-thin scrollbar-thumb-rounded-full ">
+        <div className="grid md:grid-cols-3 grid-rows-[repeat(auto-fit,minmax(auto,1fr))] sm:grid-cols-1  snap-y pt-8 h-full overflow-y-scroll scrollbar-thumb-bleuM-400  scrollbar-thin scrollbar-thumb-rounded-full ">
             {watchedListe.length > 0 && watchedListe.map((movie) => (
                 <MovieCrad key={movie?.id} movie={movie} handelDelet={handelDelet } />
             ))}
@@ -69,7 +69,7 @@ function EmptyListe({hidden,setshowWatchedList}) {
 }
 function MovieCrad({ movie, handelDelet }) {
     return (
-        <div key={movie?.id} className="group grid-rows-[repeat(auto-fit,minmax(100px,1fr))] grid grid-cols-[auto,1fr] m-1 rounded-xl bg-Secondbm snap-center">
+        <div key={movie?.id} className="group grid h-min  grid-cols-[auto,1fr] m-1 bg-bleuM-400 rounded-md border-b snap-center">
             <MovieImg handelDelet={handelDelet} movie={movie}/>
             <MovieInfos movie={movie}/>            
         </div>
@@ -81,14 +81,14 @@ function MovieInfos({ movie }) {
             <strong className="m-1 text-xl">{movie?.original_title}</strong>{" "}
             {movie?.vote_average && <span className="m-1 mx-2 flex justify-start items-center"> imdb : <strong> { movie?.vote_average.toFixed(2)}</strong>  <span className="ms-1">  <FcRating1 /></span></span>}
             {movie?.userRating && <span className="m-1 mx-2 flex justify-start items-center"> user  :  <strong> {movie?.userRating}</strong>  <span className="ms-1 text-xl text-yellow-500"> <RiUserStarLine1 /></span></span>}
-            {movie?.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > {movie?.runtime} </strong> fois <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1 /></span> </span>}              
+            {movie?.runtime && <span className="m-1 mx-2 flex justify-start items-center"> run time : <strong > {movie?.runtime} </strong> <span className="text-xl ms-1"> <PiClockCounterClockwiseDuotone1 /></span> </span>}              
         </div >
     )
 }
 function MovieImg({ movie,handelDelet}) {
     return (
         <div className=" w-[100px] h-[150px] flex items-center relative">
-                <img className="absolute  rounded-xl m-1 border border-white w-[90%] h-[90%] " src={movie?.poster_path?"https://image.tmdb.org/t/p/w300"+movie?.poster_path:'/images/imgNotFound.svg'} alt={movie?.original_title.slice(0,10)} />
+                <img className="absolute  rounded-md m-1 border border-white w-[90%] h-[90%] " src={movie?.poster_path?"https://image.tmdb.org/t/p/w300"+movie?.poster_path:'/images/imgNotFound.svg'} alt={movie?.original_title.slice(0,10)} />
             <span
                 className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[78%] group-hover:opacity-100 transition duration-500"
                 onClick={() => handelDelet(movie.id)}

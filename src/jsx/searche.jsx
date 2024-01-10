@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import "../styles/App.css";
-import {GiPopcorn1,GiExtraTime1,FaArrowUpRightFromSquare1,TiStarFullOutline1} from "../icons.jsx";
+import {GiPopcorn1,GiExtraTime1,FaArrowUpRightFromSquare1,TiStarFullOutline1,SiFireship1,IoIosPodium1,FaSlideshare1} from "../icons.jsx";
 import { Loader } from "../SimpleComponent/loader.jsx";
 export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,showTopMovies,showPopMovies,showUpcoming ,showTranding,Tranding,showDetailedMovie,onLoad,errOnLoad}) {
     const [showedData, setshowedData] = useState('popMovies');
@@ -70,7 +70,7 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
         showedData==='tranding' && showTranding()
     }
     return (
-        <div className="flex mt-1 gap-1 justify-center items-center w-full bg-black rounded-md m-auto" >
+        <div className="flex mt-1 gap-1 justify-center items-center w-full  rounded-md m-auto" >
             {page > 1 &&
             <input type="button" className=" hover:bg-black hover:border-Secondbm hover:border cursor-pointer bg-Secondbm rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
                     setPage(+e.target.value)
@@ -87,7 +87,7 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
 }
 function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding, Tranding,popular,Upcoming,top}) {
     return (
-        <div id={'tabs'} className="flex gap-2 h-[6vh] w-full overflow-auto justify-center items-center p-1 mb-4 rounded-md bg-black" >     
+        <div id={'tabs'} className="flex gap-2 h-[6vh] w-full overflow-auto justify-center items-center p-1 mb-4 rounded-md " >     
         <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={top} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'topMovies'} nom={'Top'} />
         <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={popular} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'popMovies'} nom={'Popular'} />
         <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={Upcoming} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'upcoming'} nom={'recent'} />
@@ -111,14 +111,17 @@ function Tab({ showedData, setshowedData, setPage, type, showTopMovies, showPopM
         if (content==='popMovies') showPopMovies();
     }
     return (
-          <button className={`tabsButton transition duration-300 ${showedData === content?'bg-Secondbm scale-105':' border-2 bg-black border-Secondbm text-Secondbm opacity-50'}`}  onClick={() => {
+        <div className={`tabsButton cursor-pointer transition duration-300 ${showedData === content?'bg-Secondbm scale-105':' border-2  border-Secondbm text-Secondbm opacity-50'}`}  onClick={() => {
                 setPage(1)
                 if (showedData!==content) setshowedData(content);
                 if (showedData!==content&& type.length<=0) getData(content); 
             }}>
-                <span  className={`  sm:opacity-100 sm:w-full ${showedData === content?'w-full opacity-100':'opacity-0 w-0'}`} >{nom}</span>
-                <span className="mx-1 text-xl"><GiExtraTime1 /></span>
-            </button>
+            <span className={`  sm:opacity-100 sm:w-full ${showedData === content ? 'w-full opacity-100' : 'opacity-0 w-0'}`} >{nom}</span>    
+            {content=== 'upcoming'&&<span className="mx-1 text-xl" ><GiExtraTime1 /></span>}
+            {content=== 'tranding'&&<span className="mx-1 text-xl" ><SiFireship1 /></span>}
+            {content=== 'popMovies'&&<span className="mx-1 text-xl" ><FaSlideshare1 /></span>}
+            {content=== 'topMovies'&&<span className="mx-1 text-xl" ><IoIosPodium1 /></span>}    
+        </div>
     )
 }
 
