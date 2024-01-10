@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import "../styles/App.css";
-import { SiFireship1,FaSlideshare1,GiPopcorn1,GiExtraTime1,IoIosPodium1, FaArrowUpRightFromSquare1,TiStarFullOutline1} from "../icons.jsx";
+import {GiPopcorn1,GiExtraTime1,FaArrowUpRightFromSquare1,TiStarFullOutline1} from "../icons.jsx";
 import { Loader } from "../SimpleComponent/loader.jsx";
 export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,showTopMovies,showPopMovies,showUpcoming ,showTranding,Tranding,showDetailedMovie,onLoad,errOnLoad}) {
     const [showedData, setshowedData] = useState('popMovies');
@@ -11,7 +11,7 @@ export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,sho
     return (
         <>
             <Tabs setPage={setPage} showTopMovies={showTopMovies} showTranding={showTranding} showedData={showedData} showUpcoming={showUpcoming}
-                showPopMovies={showPopMovies} setshowedData={setshowedData} Tranding={Tranding} Upcoming={Upcoming} topRatedMovies={topRatedMovies} popular={popular}
+                showPopMovies={showPopMovies} setshowedData={setshowedData} Tranding={Tranding} Upcoming={Upcoming} top={topRatedMovies} popular={popular}
             />
             {onLoad && !errOnLoad && <Loader />}
             {errOnLoad &&<p>connexion failed</p>}
@@ -27,7 +27,7 @@ export function SerchedMovies({ findedByName,popular,topRatedMovies,Upcoming,sho
 }
 function AllMovies({ data,setdetailedID,showDetailedMovie }) {    
     return (
-        <div className=" flex flex-wrap justify-around overflow-auto snap-y scrollbar-thin scrollbar-thumb-Secondbm h-[70vh] scrollbar-thumb-rounded-full w-full ">
+        <div className={`grid ${data?.length > 0 ? 'grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6' : 'grid-cols-1'}  overflow-auto snap-y scrollbar-thin scrollbar-thumb-Secondbm h-[70vh] scrollbar-thumb-rounded-full w-full`}>
             {data?.length > 0
                 ? data.map((movie) => <MoviECard key={movie.id} showDetailedMovie={showDetailedMovie} setdetailedID={setdetailedID} movie={movie} />)
                 : <EmptyList hidden={false} />
@@ -38,10 +38,10 @@ function AllMovies({ data,setdetailedID,showDetailedMovie }) {
 function MoviECard({ movie, showDetailedMovie }) {
   
     return (
-        <div key={movie.id} className="group flex flex-col flex-wrap w-[45%] md:w-auto  snap-center movie m-1 gap-1 rounded-md" >
+        <div className="group flex flex-col flex-wrap  snap-center movie m-1 rounded-md" >
             <div className="group relative flex cursor-pointer justify-center items-center w-fit " onClick={() =>
                     {showDetailedMovie(movie.id)}}>
-                <img loading="lazy" className=" w-fit sm:min-w-[200px] sm:max-w-[240px] shadow-sm shadow-Secondbm group-hover:opacity-40" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)}/>    
+                <img loading="lazy" className=" w-fit border-y border-Secondbm group-hover:opacity-40" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)}/>    
                     <p className={`absolute flex self-end rounded-md m-3 text-black w-min p-[2px] ${movie?.vote_average >= 8 ? 'bg-green-500' :movie?.vote_average >= 7 ? 'bg-green-600' :movie?.vote_average >= 6 ? 'bg-yellow-400' : movie?.vote_average >= 5 ? 'bg-orange-400' :movie?.vote_average >= 4 ? 'bg-red-400' : movie?.vote_average >= 2 ? 'bg-red-500' : 'bg-red-700'}`}>
                         <strong className=" mx-1 text-sm font-medium"> {(movie?.vote_average).toFixed(2)} </strong>
                         <span className=" text-indigo-950 "><TiStarFullOutline1 /></span>
@@ -51,7 +51,7 @@ function MoviECard({ movie, showDetailedMovie }) {
                 </p>  
             </div>
             <div className="text-center w-full">
-                <p className="  text-white" onClick={()=>console.log(movie)}>
+                <p className="  text-white my-1" >
                     <strong className=" text-sm">{movie.original_title.length>20?movie.original_title.slice(0,20)+'...':movie.original_title}</strong>
                 </p>
                 <p className=" text-xs font-bold  text-gray-400">
@@ -70,7 +70,7 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
         showedData==='tranding' && showTranding()
     }
     return (
-        <div className="flex mt-1 gap-1 justify-center items-center w-full bg-black rounded-md border-Secondbm border  m-auto" >
+        <div className="flex mt-1 gap-1 justify-center items-center w-full bg-black rounded-md m-auto" >
             {page > 1 &&
             <input type="button" className=" hover:bg-black hover:border-Secondbm hover:border cursor-pointer bg-Secondbm rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
                     setPage(+e.target.value)
@@ -85,53 +85,43 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
         </div>
     )
 }
-function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding, Tranding,popular,Upcoming,topRatedMovies}) {
+function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,showUpcoming,showTranding, Tranding,popular,Upcoming,top}) {
     return (
-        <div id={'tabs'} className="flex gap-2 h-[6h] w-full overflow-auto justify-center items-center p-1 mb-1 border border-Secondbm rounded-md bg-black" >
-            <span> </span>
-            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'topMovies'?'bg-Secondbm scale-105':'bg-Secondbm opacity-50'}`} onClick={() => {
-                setPage(1)
-                showedData!=='topMovies'&&setshowedData('topMovies');
-                showedData!=='topMovies'&& topRatedMovies.length<=0&&showTopMovies()
-                }}>
-                <span className={`  sm:opacity-100 sm:w-full ${showedData === 'topMovies'?'w-full opacity-100':'opacity-0 w-0'}`   }>Top</span>
-                <span className="mx-1 flex"><IoIosPodium1 /></span>
-            </button>
-            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'popMovies'?'bg-Secondbm scale-105':' bg-Secondbm opacity-50'}`} onClick={() => {
-                setPage(1)
-                showedData!=='popMovies'&&setshowedData('popMovies')
-                showedData!=='popMovies'&&popular.length<=0&&showPopMovies()
-                }}>
-                <span  className={`sm:opacity-100 sm:w-full ${showedData === 'popMovies'?'w-full opacity-100':'opacity-0 w-0'}`} >Popular</span>
-                <span className="mx-1 "><FaSlideshare1 /></span>
-            </button>
-            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'upcoming'?'bg-Secondbm scale-105':'bg-Secondbm opacity-50'}`}  onClick={() => {
-                setPage(1)
-                showedData!=='upcoming'&& setshowedData('upcoming')
-                showedData!=='upcoming'&& Upcoming.length<=0&&showUpcoming() 
-            }}>
-                <span  className={`  sm:opacity-100 sm:w-full ${showedData === 'upcoming'?'w-full opacity-100':'opacity-0 w-0'}`} >Recents</span>
-                <span className="mx-1 text-xl"><GiExtraTime1 /></span>
-            </button>
-            <button className={`tabsButton shadow-black shadow-sm duration-300 ${showedData === 'tranding'?'bg-Secondbm scale-105':' bg-Secondbm opacity-50'}`}  onClick={() => {
-                setPage(1)
-                showedData !== 'tranding' && setshowedData('tranding');
-                showedData !== 'tranding' &&Tranding.length<=0 && showTranding() 
-            }}>
-                <span  className={`  sm:opacity-100 sm:w-full ${showedData === 'tranding'?'w-full opacity-100':'opacity-0 w-0'}`} >Tranding</span>
-                <span className="mx-1 text-xl"><SiFireship1 /></span>
-            </button>
+        <div id={'tabs'} className="flex gap-2 h-[6vh] w-full overflow-auto justify-center items-center p-1 mb-4 rounded-md bg-black" >     
+        <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={top} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'topMovies'} nom={'Top'} />
+        <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={popular} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'popMovies'} nom={'Popular'} />
+        <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={Upcoming} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'upcoming'} nom={'recent'} />
+        <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={Tranding} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'tranding'} nom={'Tranding'} />
         </div>
     )
 }
 function EmptyList(hidden) {
     return (
-        <div className="flex items-center justify-center flex-col h-full">
+        <div className="flex items-center justify-center flex-col w-full h-full">
             <span className=" text-9xl m-5 text-Secondbm">  <GiPopcorn1 /></span>
             <strong className="p-2 text-Secondbm">{hidden?"no movies found ":"hidden section"}</strong>
         </div>
     )
 }
+function Tab({ showedData, setshowedData, setPage, type, showTopMovies, showPopMovies, showUpcoming, showTranding, content, nom }) {
+    function getData(content) {
+        if (content==='upcoming') showUpcoming();
+        if (content==='tranding') showTranding();
+        if (content==='topMovies') showTopMovies();
+        if (content==='popMovies') showPopMovies();
+    }
+    return (
+          <button className={`tabsButton transition duration-300 ${showedData === content?'bg-Secondbm scale-105':' border-2 bg-black border-Secondbm text-Secondbm opacity-50'}`}  onClick={() => {
+                setPage(1)
+                if (showedData!==content) setshowedData(content);
+                if (showedData!==content&& type.length<=0) getData(content); 
+            }}>
+                <span  className={`  sm:opacity-100 sm:w-full ${showedData === content?'w-full opacity-100':'opacity-0 w-0'}`} >{nom}</span>
+                <span className="mx-1 text-xl"><GiExtraTime1 /></span>
+            </button>
+    )
+}
+
 // function ErrorNetwork() {
 //     return (
 //         <div>

@@ -25,13 +25,31 @@ function App() {
   const [Upcoming, setUpcoming] = useState([]);
   const [Tranding, setTranding] = useState([]);
   const [detailedMovie, setdetailedMovie] = useState(null);
+  const [addedMovie, setaddedMovie] = useState(null);
   const [showWatchedList, setshowWatchedList] = useState(false);
   // const [allDetailedMovies, setallDetailedMovies] = useState([]);
-  const [watchedListe, setToWatchedListe] = useState([]);
+  const [watchedListe, setToWatchedListe] = useState(
+    localStorage.getItem("watched")
+      ? [...JSON.parse(localStorage.getItem("watched"))]
+      : []
+  );
   useEffect(() => {
     showFirstTopMovies();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    /*eslint-disable-next-line*/
   }, []);
+  useEffect(() => {
+    function additem() {
+      setToWatchedListe((e) => [...e, addedMovie]);
+      localStorage.setItem(
+        "watched",
+        JSON.stringify([...watchedListe, addedMovie])
+      );
+    }
+    addedMovie &&
+      !watchedListe.map((movie) => movie.id).includes(addedMovie.id) &&
+      additem();
+    /*eslint-disable-next-line*/
+  }, [addedMovie]);
   //useEffect(() => {
   //   popMovies.forEach((movie) => showALLDetailedMovie(movie.id));
   // }, [popMovies]);
@@ -62,7 +80,7 @@ function App() {
   //   getAllMovieDetails(id, setallDetailedMovies, allDetailedMovies);
   // }
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-screen">
       <Header
         toSearch={toSearch}
         setFindedByName={setFindedByName}
@@ -79,7 +97,7 @@ function App() {
           allDetailedMovies={allDetailedMovies}
         /> */}
         <div className="flex flex-col overflow-hidden justify-center items-center ">
-          <div className="ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh] md:h-[82vh] flex-col flex  text-white bg-black  ">
+          <div className="ms-1 mt-1 me-0 mb-1 w-[98%] h-[80vh] md:h-[82vh] flex-col flex  text-white   ">
             <SerchedMovies
               onLoad={onLoad.searched}
               errOnLoad={errOnLoad}
@@ -97,11 +115,11 @@ function App() {
             />
           </div>
           <div
-            className={`rounded-md -top-0 h-[100dvh] w-full transition duration-500 absolute ${
+            className={`rounded-md  scale-0 -top-0 h-[100dvh] w-full absolute ${
               detailedMovie || showWatchedList
-                ? "w-3/4 visible"
-                : "w-0 invisible"
-            } flex-col items-center justify-center flex text-white backdrop-blur-md `}
+                ? "transition scale-100 duration-200 backdrop-blur-md"
+                : "transition duration-100 scale-0"
+            } flex-col items-center justify-center flex text-white  `}
           >
             {detailedMovie ? (
               <DetailedMovie
@@ -109,6 +127,7 @@ function App() {
                 showDetailedMovie={showDetailedMovie}
                 detailedMovie={detailedMovie}
                 setdetailedMovie={setdetailedMovie}
+                setaddedMovie={setaddedMovie}
                 watchedListe={watchedListe}
                 addToWatchedListe={setToWatchedListe}
                 setshowWatchedList={setshowWatchedList}
@@ -123,7 +142,7 @@ function App() {
           </div>
         </div>
       </div>
-      <Footer />
+      {!(detailedMovie || showWatchedList) && <Footer />}
     </div>
   );
 }

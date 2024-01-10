@@ -1,29 +1,31 @@
 import {  useEffect, useState } from 'react'
 import {IoMdReturnLeft1, PiFilePlusFill1,TiStarFullOutline1,IoMdCloseCircle1} from '../icons'
-export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWatchedListe,watchedListe,setshowWatchedList }) {
+export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWatchedListe,watchedListe,setshowWatchedList,setaddedMovie }) {
     const [readMore, setReadMore] = useState(false)
     useEffect(() => {
         detailedMovie?
         document.title=detailedMovie.original_title:
         document.title='popcorne'
-    },[detailedMovie])
+    }, [detailedMovie])
+    
     const[alreadyExists,setalreadyExists]=useState(false)
     function checkAfterAdd() {
-        !watchedListe.map(movie => movie.id).includes(detailedMovie.id) 
-            ? addToWatchedListe([...watchedListe, detailedMovie])
+        console.log(detailedMovie)
+        !watchedListe.map(movie => movie).includes(detailedMovie)
+            ? setaddedMovie(detailedMovie) 
             : setalreadyExists(true)
         console.log(alreadyExists)
     }
 
     return (
-    <div className='bg-bleuM-300 h-[90%] w-[90%] md:h-[70dvh] md:w-5/6 p-3 rounded-md border-bleuM-200 border'>
+    <div className='bg-bleuM-300 h-[90%] w-[90%] md:h-[70dvh] md:w-5/6 p-3 rounded-md border-bleuM-200 border '>
         <div className='h-full w-full relative overflow-auto'>
                 {onLoad &&
                     <div className='h-full text-center flex items-center justify-center w-full'>
                         <div className="flex flex-row gap-2">
-                            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]"></div>
-                            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]"></div>
-                            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]"></div>
+                            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]" />
+                            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.3s]" />
+                            <div className="w-4 h-4 rounded-full bg-blue-700 animate-bounce [animation-delay:.7s]" />
                         </div>
                     </div>}
             {detailedMovie && !onLoad &&
@@ -59,8 +61,8 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                         }
                     </div>
                      <div className='flex gap-1'>
-                            <button className='flex bg-yellow-500 items-center p-1 rounded-md hover:bg-bleuM-400 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
-                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-yellow-500 items-center p-1 rounded-md hover:bg-bleuM-400 '>Web Site</a>
+                            <button className='flex bg-yellow-500 text-black items-center p-1 rounded-md hover:scale-105 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
+                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-yellow-500 text-black hover:scale-105 items-center p-1 rounded-md  '>Web Site</a>
                         </div>   
                 </div>
             </>
