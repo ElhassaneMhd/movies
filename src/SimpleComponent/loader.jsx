@@ -6,10 +6,9 @@ export function Loader() {
     )
 }
 function Load() {
-
     return (
         <div className=" h-fit flex-col flex gap-1 items-center animate-pulse p-1">
-            <div className="w-full h-[280px] md:[300px] flex items-center rounded-md border border-Secondbm" >
+            <div className="w-full h-[280px] md:[300px] flex items-center border border-Secondbm" >
                 <div className="flex-col gap-4 w-full flex items-center justify-center">
                     <div className="w-16 h-16 border-8 text-Secondbm text-4xl animate-spin border-gray-300 flex items-center justify-center border-t-Secondbm rounded-full" />
                 </div>

@@ -29,9 +29,9 @@ function App() {
   const [showWatchedList, setshowWatchedList] = useState(false);
   // const [allDetailedMovies, setallDetailedMovies] = useState([]);
   const [watchedListe, setToWatchedListe] = useState(
-    localStorage.getItem("watched")
+   ()=> (localStorage.getItem("watched")
       ? [...JSON.parse(localStorage.getItem("watched"))]
-      : []
+      : [])
   );
   useEffect(() => {
     showFirstTopMovies();

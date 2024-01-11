@@ -3,13 +3,14 @@ import {
     IoMdReturnLeft1, TiStarFullOutline1, IoMdCloseCircle1, FaRegPlusSquare1
 } from '../icons'
 export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWatchedListe,watchedListe,setshowWatchedList,setaddedMovie }) {
+    const [title, setTitle] = useState()
     useEffect(() => {
-        detailedMovie?
-        document.title=detailedMovie.original_title:
-        document.title='popcorne'
-    }, [detailedMovie])
-    
-  
+        setTitle(detailedMovie.original_title)
+    },[detailedMovie])
+    useEffect(() => {
+       document.title=title
+    }, [title])
+
     const[alreadyExists,setalreadyExists]=useState(false)
     function checkAfterAdd() {
         console.log(detailedMovie)
@@ -37,7 +38,7 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                      <strong key={detailedMovie.id} className="">
                         {detailedMovie.original_title}
                     </strong>
-                    <span className=" text-white m-1 cursor-pointer grid place-content-center self-end  text-2xl hover:scale-105" onClick={() => setdetailedMovie(null)}><IoMdCloseCircle1 /></span>
+                        <span className=" text-white m-1 cursor-pointer grid place-content-center self-end  text-2xl hover:scale-105" onClick={() => { setdetailedMovie(null); setTitle('POP CORNE')}}><IoMdCloseCircle1 /></span>
                 </div>
                 <div className='w-full flex-col md:flex-row flex-wrap flex'> 
                     <div className=" w-full  md:w-[50%] flex ">
@@ -48,19 +49,19 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                                 <span className='text-lg text-yellow-400'><TiStarFullOutline1 /></span>
                             </p>
                             <p className='flex items-center  gap-1 flex-wrap'>
-                              genres :   {detailedMovie.genres.map(e=><span className='px-1 bg-Secondbm rounded-md'>{e.name}</span>)}
+                              genres :   {detailedMovie.genres.map((e,i)=><span key={i}  className='px-1 bg-Secondbm rounded-md'>{e.name}</span>)}
                             </p>
                             <p>
                                 runtime : {detailedMovie.runtime } min
                             </p>
                             <div className='flex gap-1'>
                                 <button  onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}}
-                                    class="overflow-hidden relative flex items-center gap-1 p-1 bg-bleuM-400 hover:px-10 text-white border-none transition-transform duration-300 rounded-md cursor-pointer z-10 group">
-                                      <span><FaRegPlusSquare1/></span> 
-                                  <span class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-300 duration-7000 origin-left" />
-                                  <span class="absolute w-36 h-32 -top-8 -left-2 bg-indigo-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-500 origin-left" />
-                                  <span class="absolute w-36 h-32 -top-8 -left-2 bg-Secondbm rotate-12 transform scale-x-0 group-hover:scale-x-50 transition-transform group-hover:duration-700 duration-300 origin-left" />
-                                  <span class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute left-2 z-10">
+                                    className="overflow-hidden relative flex items-center gap-1 p-1 bg-bleuM-400  text-white border-none transition-transform duration-300 rounded-md cursor-pointer z-10 group">
+                                      <span className='flex items-center gap-1'><FaRegPlusSquare1/>watchListe</span> 
+                                  <span className="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-300 duration-7000 origin-left" />
+                                  <span className="absolute w-36 h-32 -top-8 -left-2 bg-indigo-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-500 origin-left" />
+                                  <span className="absolute w-36 h-32 -top-8 -left-2 bg-Secondbm rotate-12 transform scale-x-0 group-hover:scale-x-50 transition-transform group-hover:duration-700 duration-300 origin-left" />
+                                  <span className="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute left-2 z-10">
                                         watchListe </span>
                                 </button>
                                 <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-bleuM-400 hover:scale-105 items-center p-1 rounded-md  '>Web Site</a>

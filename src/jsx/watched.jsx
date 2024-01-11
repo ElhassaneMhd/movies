@@ -52,7 +52,7 @@ function Showbtn({setshowWatchedList}) {
 }
 function Allmovies({watchedListe,handelDelet}) {
     return (
-        <div className="grid md:grid-cols-3 grid-rows-[repeat(auto-fit,minmax(auto,1fr))] sm:grid-cols-1  snap-y pt-8 h-full overflow-y-scroll scrollbar-thumb-bleuM-400  scrollbar-thin scrollbar-thumb-rounded-full ">
+        <div className="grid md:grid-cols-3 grid-rows-[repeat(auto-fit,minmax(auto,auto))] sm:grid-cols-1  snap-y pt-8 h-min max-h-full overflow-y-scroll scrollbar-thumb-bleuM-400  scrollbar-thin scrollbar-thumb-rounded-full ">
             {watchedListe.length > 0 && watchedListe.map((movie) => (
                 <MovieCrad key={movie?.id} movie={movie} handelDelet={handelDelet } />
             ))}
@@ -96,7 +96,7 @@ function MovieImg({ movie,handelDelet}) {
         <div className=" w-[100px] h-[150px] flex items-center relative">
                 <img className="absolute  m-1 border-y border-white w-[90%] h-[90%] " src={movie?.poster_path?"https://image.tmdb.org/t/p/w300"+movie?.poster_path:'/images/imgNotFound.svg'} alt={movie?.original_title.slice(0,10)} />
             <span
-                className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[78%] group-hover:opacity-100 transition duration-500"
+                className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-tr-none rounded-tl-none  absolute ms-1 top-[73%] group-hover:opacity-100 transition duration-500"
                 onClick={() => handelDelet(movie.id)}
                 >
                 <strong> Delete</strong>

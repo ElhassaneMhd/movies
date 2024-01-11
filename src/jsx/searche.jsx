@@ -41,7 +41,7 @@ function MoviECard({ movie, showDetailedMovie }) {
         <div className="group flex flex-col flex-wrap  snap-center movie m-1 rounded-md" >
             <div className="group relative flex cursor-pointer justify-center items-center w-fit " onClick={() =>
                     {showDetailedMovie(movie.id)}}>
-                <img loading="lazy" className=" w-fit border-y border-Secondbm group-hover:opacity-40" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'/images/imgNotFound.svg'} alt={movie.original_title.slice(0,10)}/>    
+                <img className=" w-fit border-y border-Secondbm group-hover:opacity-40" src={movie.poster_path?"https://image.tmdb.org/t/p/original"+movie.poster_path:'images\\imgNotFound.svg'} alt={movie.original_title.slice(0,10)}/>    
                     <p className={`absolute flex self-end rounded-md m-3 text-black w-min p-[2px] ${movie?.vote_average >= 8 ? 'bg-green-500' :movie?.vote_average >= 7 ? 'bg-green-600' :movie?.vote_average >= 6 ? 'bg-yellow-400' : movie?.vote_average >= 5 ? 'bg-orange-400' :movie?.vote_average >= 4 ? 'bg-red-400' : movie?.vote_average >= 2 ? 'bg-red-500' : 'bg-red-700'}`}>
                         <strong className=" mx-1 text-sm font-medium"> {(movie?.vote_average).toFixed(2)} </strong>
                         <span className=" text-indigo-950 "><TiStarFullOutline1 /></span>
@@ -72,13 +72,13 @@ function Pagination({showedData,page,setPage, showPopMovies,showUpcoming,showTop
     return (
         <div className="flex mt-1 gap-1 justify-center items-center w-full  rounded-md m-auto" >
             {page > 1 &&
-            <input type="button" className=" hover:bg-black hover:border-Secondbm hover:border cursor-pointer bg-Secondbm rounded-xl px-2 py-1 font-bold shadow-black shadow-sm duration-500 hover:transition" onClick={(e) => {
+            <input type="button" className=" hover:opacity-100 opacity-50 border-2 border-Secondbm cursor-pointer text-Secondbm rounded-md px-2  font-bold duration-300 hover:transition scale-90" onClick={(e) => {
                     setPage(+e.target.value)
                     readMore(showedData, +e.target.value);
                 }} value={page-1} />
                 }
-            <input type="button" className=" border-2 m-1 border-Secondbm text-Secondbm rounded-xl px-2 py-1 font-bold shadow-black shadow-sm scale-110" value={page} />
-            <input type="button" className=" hover:bg-black hover:border-Secondbm hover:border  cursor-pointer bg-Secondbm flex rounded-xl px-2 py-1 font-bold items-center hover:scale-105 shadow-black shadow-sm duration-500 " onClick={(e) => {
+            <input type="button" className=" m-1 bg-Secondbm text-white rounded-md px-2 font-bold shadow-black shadow-sm scale-110" value={page} />
+            <input type="button" className=" hover:opacity-100 opacity-50 hover:border-Secondbm cursor-pointer border-2 text-Secondbm border-Secondbm rounded-md px-2 font-bold items-center hover:scale-105 scale-90 duration-300 " onClick={(e) => {
                     setPage(+e.target.value)
                     readMore(showedData, +e.target.value)
                 }} value={page+1}/>
@@ -111,7 +111,7 @@ function Tab({ showedData, setshowedData, setPage, type, showTopMovies, showPopM
         if (content==='popMovies') showPopMovies();
     }
     return (
-        <div className={`tabsButton cursor-pointer transition duration-300 ${showedData === content?'bg-Secondbm scale-105':' border-2  border-Secondbm text-Secondbm opacity-50'}`}  onClick={() => {
+        <div className={`tabsButton cursor-pointer transition duration-100 ${showedData === content?'bg-Secondbm scale-105':' border-2  border-Secondbm text-Secondbm opacity-50'}`}  onClick={() => {
                 setPage(1)
                 if (showedData!==content) setshowedData(content);
                 if (showedData!==content&& type.length<=0) getData(content); 

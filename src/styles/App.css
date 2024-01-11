@@ -9,5 +9,5 @@
 }
 
 .tabsButton {
-  @apply p-1 px-2 flex rounded-md items-center hover:scale-105 duration-200 hover:transition hover:opacity-100
+  @apply p-1 px-2 flex rounded-md items-center hover:scale-105 hover:transition hover:opacity-100
 }
