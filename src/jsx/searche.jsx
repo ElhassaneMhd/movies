@@ -90,7 +90,7 @@ function Tabs({setPage,showedData,showTopMovies,showPopMovies,setshowedData,show
         <div id={'tabs'} className="flex gap-2 h-[6vh] w-full overflow-auto justify-center items-center p-1 mb-4 rounded-md " >     
         <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={top} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'topMovies'} nom={'Top'} />
         <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={popular} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'popMovies'} nom={'Popular'} />
-        <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={Upcoming} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'upcoming'} nom={'recent'} />
+        <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={Upcoming} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'upcoming'} nom={'Recent'} />
         <Tab showedData={showedData} setshowedData={setshowedData} setPage={setPage} type={Tranding} showUpcoming={showUpcoming} showTopMovies={showTopMovies} showPopMovies={showPopMovies} showTranding={showTranding} content={'tranding'} nom={'Tranding'} />
         </div>
     )

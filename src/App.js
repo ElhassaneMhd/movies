@@ -37,6 +37,7 @@ function App() {
     showFirstTopMovies();
     /*eslint-disable-next-line*/
   }, []);
+  
   useEffect(() => {
     function additem() {
       setToWatchedListe((e) => [...e, addedMovie]);
@@ -50,6 +51,7 @@ function App() {
       additem();
     /*eslint-disable-next-line*/
   }, [addedMovie]);
+
   //useEffect(() => {
   //   popMovies.forEach((movie) => showALLDetailedMovie(movie.id));
   // }, [popMovies]);

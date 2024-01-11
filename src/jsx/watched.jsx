@@ -6,10 +6,16 @@ import {
     RiUserStarLine1,
     RiFileList3Line1,
 } from "../icons.jsx";
+import { useEffect } from "react";
 export function WatchedMovies({ watchedListe ,setToWatchedListe,setshowWatchedList}) {
     function handelDelet(id) {
         setToWatchedListe(watchedListe.filter((e) => e?.id !== id));
     }
+      useEffect(() => {
+    localStorage.setItem(
+      "watched",
+      JSON.stringify([...watchedListe]))
+  },[watchedListe])
     return (
     <div className="relative  bg-bleuM-300 rounded-md h-[90%] w-[90%] md:h-[70dvh] md:w-5/6 border-bleuM-200 border">
         {(watchedListe.length > 0)? (
@@ -69,7 +75,7 @@ function EmptyListe({hidden,setshowWatchedList}) {
 }
 function MovieCrad({ movie, handelDelet }) {
     return (
-        <div key={movie?.id} className="group grid h-min  grid-cols-[auto,1fr] m-1 bg-bleuM-400 rounded-md border-b snap-center">
+        <div key={movie?.id} className="group grid h-min  grid-cols-[auto,1fr] m-1 bg-bleuM-400 rounded-sm border-y-2 snap-center">
             <MovieImg handelDelet={handelDelet} movie={movie}/>
             <MovieInfos movie={movie}/>            
         </div>
@@ -88,7 +94,7 @@ function MovieInfos({ movie }) {
 function MovieImg({ movie,handelDelet}) {
     return (
         <div className=" w-[100px] h-[150px] flex items-center relative">
-                <img className="absolute  rounded-md m-1 border border-white w-[90%] h-[90%] " src={movie?.poster_path?"https://image.tmdb.org/t/p/w300"+movie?.poster_path:'/images/imgNotFound.svg'} alt={movie?.original_title.slice(0,10)} />
+                <img className="absolute  m-1 border-y border-white w-[90%] h-[90%] " src={movie?.poster_path?"https://image.tmdb.org/t/p/w300"+movie?.poster_path:'/images/imgNotFound.svg'} alt={movie?.original_title.slice(0,10)} />
             <span
                 className=" opacity-0 w-[90%] cursor-pointer flex items-center p-1 bg-red-500 rounded-xl rounded-tr-none rounded-tl-none  absolute ms-1 top-[78%] group-hover:opacity-100 transition duration-500"
                 onClick={() => handelDelet(movie.id)}

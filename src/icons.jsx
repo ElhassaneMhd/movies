@@ -17,12 +17,17 @@ import { GiExtraTime } from "react-icons/gi";
 import { IoIosPodium } from "react-icons/io";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { PiKeyReturnFill } from "react-icons/pi";
-import { PiFilePlusFill } from "react-icons/pi";
 import { CiMenuKebab } from "react-icons/ci";
 import { IoMdCloseCircle } from "react-icons/io";
+import { FaRegPlusSquare } from "react-icons/fa";
 
 
 
+export function FaRegPlusSquare1() {
+    return (
+        <FaRegPlusSquare/>
+    )
+}
 export function IoMdCloseCircle1() {
     return (
         <IoMdCloseCircle/>
@@ -34,11 +39,6 @@ export function CiMenuKebab1() {
     )
 }
 
-export function PiFilePlusFill1() {
-    return (
-        <PiFilePlusFill/>
-    )
-}
 export function IoMdReturnLeft1() {
     return (
         <PiKeyReturnFill/>

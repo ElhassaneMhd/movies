@@ -1,13 +1,15 @@
 import {  useEffect, useState } from 'react'
-import {IoMdReturnLeft1, PiFilePlusFill1,TiStarFullOutline1,IoMdCloseCircle1} from '../icons'
+import {
+    IoMdReturnLeft1, TiStarFullOutline1, IoMdCloseCircle1, FaRegPlusSquare1
+} from '../icons'
 export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWatchedListe,watchedListe,setshowWatchedList,setaddedMovie }) {
-    const [readMore, setReadMore] = useState(false)
     useEffect(() => {
         detailedMovie?
         document.title=detailedMovie.original_title:
         document.title='popcorne'
     }, [detailedMovie])
     
+  
     const[alreadyExists,setalreadyExists]=useState(false)
     function checkAfterAdd() {
         console.log(detailedMovie)
@@ -39,7 +41,7 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                 </div>
                 <div className='w-full flex-col md:flex-row flex-wrap flex'> 
                     <div className=" w-full  md:w-[50%] flex ">
-                        <img className="brightness-50 rounded-md" src={detailedMovie.backdrop_path?"https://image.tmdb.org/t/p/original"+detailedMovie.backdrop_path:'/images/imgNotFound.png'} alt={detailedMovie.original_title.slice(0,10)} />
+                        <img className="brightness-50 " src={detailedMovie.backdrop_path?"https://image.tmdb.org/t/p/original"+detailedMovie.backdrop_path:'/images/imgNotFound.png'} alt={detailedMovie.original_title.slice(0,10)} />
                         </div>
                         <div className=' w-full md:w-[50%] flex flex-col gap-2 p-2'>
                             <p className='flex gap-1 items-center' onClick={() => console.log(detailedMovie)}> imdb rating :{detailedMovie.vote_average.toFixed(2)}
@@ -51,20 +53,25 @@ export function DetailedMovie({ detailedMovie, setdetailedMovie, onLoad,addToWat
                             <p>
                                 runtime : {detailedMovie.runtime } min
                             </p>
-                              <div className='flex gap-1'>
-                            <button className='flex bg-bleuM-400 items-center p-1 rounded-md hover:scale-105 ' onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}} ><span><PiFilePlusFill1/></span> watche liste </button>
-                            <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-bleuM-400 hover:scale-105 items-center p-1 rounded-md  '>Web Site</a>
-                        </div>  
+                            <div className='flex gap-1'>
+                                <button  onClick={() => { checkAfterAdd(); setdetailedMovie(null); setshowWatchedList(true)}}
+                                    class="overflow-hidden relative flex items-center gap-1 p-1 bg-bleuM-400 hover:px-10 text-white border-none transition-transform duration-300 rounded-md cursor-pointer z-10 group">
+                                      <span><FaRegPlusSquare1/></span> 
+                                  <span class="absolute w-36 h-32 -top-8 -left-2 bg-white rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-300 duration-7000 origin-left" />
+                                  <span class="absolute w-36 h-32 -top-8 -left-2 bg-indigo-400 rotate-12 transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-500 origin-left" />
+                                  <span class="absolute w-36 h-32 -top-8 -left-2 bg-Secondbm rotate-12 transform scale-x-0 group-hover:scale-x-50 transition-transform group-hover:duration-700 duration-300 origin-left" />
+                                  <span class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute left-2 z-10">
+                                        watchListe </span>
+                                </button>
+                                <a target='_blank' rel='noreferrer' href={detailedMovie?.homepage} className='flex bg-bleuM-400 hover:scale-105 items-center p-1 rounded-md  '>Web Site</a>
+                            </div>  
                         </div>
                 </div>     
                 <div className='summary p-2 mx-1'>
+                        <div className='my-2 '>
                         Story :
-                        <div className='my-2 italic'>
-                        {readMore
-                            ?<p className='cursor-pointer p-2 rounded-md transitcion duration-500 hover:bg-bleuM-400' onClick={() => setReadMore(false)} >{detailedMovie.overview }... </p>  
-                            :<p className='cursor-pointer p-2 rounded-md  transition duration-500 hover:bg-bleuM-400' onClick={() => setReadMore(true)} >{detailedMovie.overview.slice(0, 200)}</p>
-                        }
-                    </div>
+                            <p className='cursor-pointer italic p-2 rounded-md transitcion duration-500 hover:bg-bleuM-400'>{detailedMovie.overview } </p>  
+                        </div>
                     
                 </div>
             </>
